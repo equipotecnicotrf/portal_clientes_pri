@@ -30,7 +30,7 @@ public class RolesController {
     }
 
     @GetMapping("/Roles/{CP_rol_id}")
-    public ResponseEntity<RolesEntity> getRoleBy(@PathVariable Long CP_rol_id) {
+    public ResponseEntity<RolesEntity> getRolByCP_rol_id(@PathVariable Long CP_rol_id) {
         RolesEntity rol = rolesRepository.getRolByCP_rol_id(CP_rol_id)
                 .orElseThrow(()->new ResourceNotFoundException("El rol no existe con el CP_rol_id" + CP_rol_id));
         return ResponseEntity.ok(rol);
