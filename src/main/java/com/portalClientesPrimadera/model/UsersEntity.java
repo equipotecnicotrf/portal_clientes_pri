@@ -29,7 +29,7 @@ public class UsersEntity {
     @Column(name = "CP_email")
     private String CP_email;
 
-    @Column(name = "cust_account_id", unique = true)
+    @Column(name = "cust_account_id")
     private Integer cust_account_id;
 
     @Column(name = "cust_name")
@@ -56,7 +56,7 @@ public class UsersEntity {
     /* name="CP_id_user" columna de la entidad actual,
     referencedColumnName = "CP_id_user" hace referencia a la columna de otra tabla
     */
-    @JoinColumn(name="CP_rol_id", referencedColumnName = "CP_rol_id", nullable = false )
+    @JoinColumn(name="CP_rol_id", referencedColumnName = "CP_rol_id", nullable = false)
     @Getter
     @Setter
     private RolesEntity rolesEntity;
