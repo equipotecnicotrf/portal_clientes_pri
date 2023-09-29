@@ -13,7 +13,7 @@ import com.portalClientesPrimadera.model.UsersEntity;
 import com.portalClientesPrimadera.repository.UsersRepository;
 import java.util.Base64;
 
-@CrossOrigin(origins =  "http://localhost:3000")
+@CrossOrigin
 @RestController
 @RequestMapping("/api/v1")
 public class UsersController {

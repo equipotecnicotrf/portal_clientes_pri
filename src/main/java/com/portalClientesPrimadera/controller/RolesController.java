@@ -23,11 +23,11 @@ public class RolesController {
     public List<RolesEntity> ListarRoles(){
         return rolesRepository.findAll();
     }
-
     @PostMapping("/Roles")
     public RolesEntity saveRol (@RequestBody RolesEntity rolesEntity){
         return rolesRepository.save(rolesEntity);
     }
+
 
     @GetMapping("/Roles/{CP_rol_id}")
     public ResponseEntity<RolesEntity> getRolByCP_rol_id(@PathVariable Long CP_rol_id) {
