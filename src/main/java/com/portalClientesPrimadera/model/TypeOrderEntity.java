@@ -1,10 +1,9 @@
 package com.portalClientesPrimadera.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,5 +22,6 @@ public class TypeOrderEntity {
 
     @Column(name = "CP_type_order_meaning",nullable = false, length =30)
         private String CP_type_order_meaning;
+
 
 }
