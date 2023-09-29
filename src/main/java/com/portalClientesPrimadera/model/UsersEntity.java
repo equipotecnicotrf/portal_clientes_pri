@@ -1,23 +1,16 @@
 package com.portalClientesPrimadera.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Data
 @Entity
-@Table(name = "Users",uniqueConstraints = @UniqueConstraint(columnNames = "CP_username"))
+@Table(name = "Users",uniqueConstraints = {@UniqueConstraint(columnNames = "CP_username"), @UniqueConstraint(columnNames = "cust_account_id")})
 public class UsersEntity {
     
     @Id
@@ -42,8 +35,8 @@ public class UsersEntity {
     @Column(name = "cust_name")
     private String cust_name;
 
-    @Column(name = "CP_rol_id")
-    private Integer CP_rol_id;
+    @Column(name = "CP_rol_id", insertable = false,  updatable = false)
+    private Long CP_rol_id;
 
     @Column(name = "CP_estatus")
     private String CP_estatus;
@@ -54,6 +47,22 @@ public class UsersEntity {
     @Column(name = "party_id")
     private Integer party_id;
 
+    @OneToMany(mappedBy = "usersEntity")
+    @Getter
+    @Setter
+    private List<AuditEntity> audits;
 
+    @ManyToOne
+    /* name="CP_id_user" columna de la entidad actual,
+    referencedColumnName = "CP_id_user" hace referencia a la columna de otra tabla
+    */
+    @JoinColumn(name="CP_rol_id", referencedColumnName = "CP_rol_id", nullable = false)
+    @Getter
+    @Setter
+    private RolesEntity rolesEntity;
 
+    @OneToMany(mappedBy = "usersEntity")
+    @Getter
+    @Setter
+    private List<AddressesEntity> addresses;
 }

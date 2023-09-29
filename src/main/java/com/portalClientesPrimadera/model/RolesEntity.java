@@ -1,10 +1,9 @@
 package com.portalClientesPrimadera.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,5 +25,10 @@ public class RolesEntity {
 
     @Column(name = "CP_rol_status", nullable = false, length = 30)
     private String CP_rol_status;
+
+    @OneToMany(mappedBy = "rolesEntity")
+    @Getter
+    @Setter
+    private List<UsersEntity> users;
 
 }
