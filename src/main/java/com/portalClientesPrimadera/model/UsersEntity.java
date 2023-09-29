@@ -10,7 +10,7 @@ import java.util.List;
 @Builder
 @Data
 @Entity
-@Table(name = "Users",uniqueConstraints = @UniqueConstraint(columnNames = "CP_username"))
+@Table(name = "Users",uniqueConstraints = {@UniqueConstraint(columnNames = "CP_username"), @UniqueConstraint(columnNames = "cust_account_id")})
 public class UsersEntity {
     
     @Id
@@ -29,7 +29,7 @@ public class UsersEntity {
     @Column(name = "CP_email")
     private String CP_email;
 
-    @Column(name = "cust_account_id")
+    @Column(name = "cust_account_id", unique = true)
     private Integer cust_account_id;
 
     @Column(name = "cust_name")
@@ -61,4 +61,8 @@ public class UsersEntity {
     @Setter
     private RolesEntity rolesEntity;
 
+    @OneToMany(mappedBy = "usersEntity")
+    @Getter
+    @Setter
+    private List<AddressesEntity> addresses;
 }
