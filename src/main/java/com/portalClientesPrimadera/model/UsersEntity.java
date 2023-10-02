@@ -47,6 +47,8 @@ public class UsersEntity {
     @Column(name = "party_id")
     private Integer party_id;
 
+    /*
+
     @OneToMany(mappedBy = "usersEntity")
     @Getter
     @Setter
@@ -56,6 +58,7 @@ public class UsersEntity {
     /* name="CP_id_user" columna de la entidad actual,
     referencedColumnName = "CP_id_user" hace referencia a la columna de otra tabla
     */
+    /*
     @JoinColumn(name="CP_rol_id", referencedColumnName = "CP_rol_id", nullable = false)
     @Getter
     @Setter
@@ -65,4 +68,5 @@ public class UsersEntity {
     @Getter
     @Setter
     private List<AddressesEntity> addresses;
+    */
 }

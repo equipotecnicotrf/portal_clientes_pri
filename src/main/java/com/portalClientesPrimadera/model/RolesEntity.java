@@ -26,9 +26,11 @@ public class RolesEntity {
     @Column(name = "CP_rol_status", nullable = false, length = 30)
     private String CP_rol_status;
 
+    /*
+
     @OneToMany(mappedBy = "rolesEntity")
     @Getter
     @Setter
     private List<UsersEntity> users;
-
+    */
 }
