@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +21,22 @@ public class ReporteClientesController {
     @GetMapping("/reporteClientes")
     public List<Cliente> obtenClientes() {
         return ejecutarReporte44.ReporteClientes("/Custom/PRIMADERA/PORTAL_CLIENTES/Rpt_listado_cliente.xdo", "INTEGRACION_PRI", "Oracle2023*");
+    }
+
+    @GetMapping("/reporteClientes/filtrar")
+    public List<Cliente> filtrarCliente (@RequestParam String palabraClave){
+
+        List<Cliente> listaClientes = ejecutarReporte44.ReporteClientes("/Custom/PRIMADERA/PORTAL_CLIENTES/Rpt_listado_cliente.xdo", "INTEGRACION_PRI", "Oracle2023*");
+
+        List<Cliente> clientesFiltrados = new ArrayList<>();
+
+        for (Cliente cliente : listaClientes){
+            if (cliente.getAccountName().toLowerCase().contains(palabraClave.toLowerCase())) {
+                clientesFiltrados.add(cliente);
+            }
+        }
+
+        return clientesFiltrados;
     }
 
 

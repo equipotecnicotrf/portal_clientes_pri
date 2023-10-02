@@ -138,14 +138,6 @@ public class EjecutarReporte4_4 {
 
                         return listaClientes = clientes;
 
-                        // Ahora tienes la lista de clientes con sus datos
-                       /* for (Cliente cliente : clientes) {
-                            System.out.println("Account Name: " + cliente.getAccountName());
-                            System.out.println("Cust Account ID: " + cliente.getCustAccountId());
-                            System.out.println("Party ID: " + cliente.getPartyId());
-                            System.out.println();
-                        }*/
-
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
