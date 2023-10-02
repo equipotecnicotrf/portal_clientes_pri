@@ -35,7 +35,7 @@ public class UsersEntity {
     @Column(name = "cust_name")
     private String cust_name;
 
-    @Column(name = "CP_rol_id", insertable = false,  updatable = false)
+    @Column(name = "CP_rol_id")
     private Long CP_rol_id;
 
     @Column(name = "CP_estatus")
@@ -47,22 +47,19 @@ public class UsersEntity {
     @Column(name = "party_id")
     private Integer party_id;
 
-    @OneToMany(mappedBy = "usersEntity")
+    /*@OneToMany(mappedBy = "usersEntity")
     @Getter
     @Setter
-    private List<AuditEntity> audits;
+    private List<AuditEntity> audits;*/
 
-    @ManyToOne
+    /*@ManyToOne
     /* name="CP_id_user" columna de la entidad actual,
     referencedColumnName = "CP_id_user" hace referencia a la columna de otra tabla
     */
-    @JoinColumn(name="CP_rol_id", referencedColumnName = "CP_rol_id", nullable = false)
+    /*@JoinColumn(name="CP_rol_id", referencedColumnName = "CP_rol_id", nullable = false)
     @Getter
     @Setter
-    private RolesEntity rolesEntity;
+    private RolesEntity rolesEntity;*/
 
-    @OneToMany(mappedBy = "usersEntity")
-    @Getter
-    @Setter
-    private List<AddressesEntity> addresses;
+
 }
