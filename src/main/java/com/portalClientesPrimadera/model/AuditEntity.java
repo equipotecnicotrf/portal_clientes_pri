@@ -23,7 +23,7 @@ public class AuditEntity {
     @Column(name = "CP_Audit_description", nullable = false, length = 30)
     private String CP_audit_description;
 
-    @Column(name = "CP_Audit _Date")
+    @Column(name = "CP_Audit _Date" )
     private Date CP_audit_date;
 
     @PrePersist

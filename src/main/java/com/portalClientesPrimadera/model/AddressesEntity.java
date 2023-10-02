@@ -44,6 +44,15 @@ public class AddressesEntity {
     private Integer party_site_id;
 
 
+    /*
+    @ManyToOne
+    /* name="CP_id_user" columna de la entidad actual,
+    referencedColumnName = "CP_id_user" hace referencia a la columna de otra tabla
+    *//*
+    @JoinColumn(name="cust_account_id", referencedColumnName = "cust_account_id", nullable = false, foreignKey = @ForeignKey(name = "FK_addresses_users_account") )
+    @Getter
+    @Setter
+    private UsersEntity usersEntity;*/
 
 
 }
