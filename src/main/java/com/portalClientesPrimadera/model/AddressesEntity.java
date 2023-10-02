@@ -34,7 +34,7 @@ public class AddressesEntity {
     @Column(name = "Site_use_code", nullable = false, length = 30)
     private String Site_use_code;
 
-    @Column(name = "CP_type_order_id", length = 10)
+    @Column(name = "CP_type_order_id", length = 10, insertable = false,  updatable = false)
     private Integer CP_type_order_id;
 
     @Column(name = "organization_id", nullable = false, length = 10)
@@ -43,14 +43,7 @@ public class AddressesEntity {
     @Column(name = "party_site_id", nullable = false, length = 10)
     private Integer party_site_id;
 
-    @ManyToOne
-    /* name="CP_id_user" columna de la entidad actual,
-    referencedColumnName = "CP_id_user" hace referencia a la columna de otra tabla
-    */
-    @JoinColumn(name="cust_account_id", referencedColumnName = "cust_account_id", nullable = false, foreignKey = @ForeignKey(name = "FK_addresses_users_account") )
-    @Getter
-    @Setter
-    private UsersEntity usersEntity;
+
 
 
 }
