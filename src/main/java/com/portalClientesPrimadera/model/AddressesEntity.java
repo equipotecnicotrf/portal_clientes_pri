@@ -11,49 +11,38 @@ import lombok.*;
 @Table(name = "Addresses",uniqueConstraints = @UniqueConstraint(columnNames = "site_use_id"))
 public class AddressesEntity {
     @Id
-    private Integer site_use_id;
+    @Column(name = "site_use_id")
+    private Long site_use_id;
 
-    @Column(name = "cust_account_id", length = 10, insertable = false,  updatable = false)
+    @Column(name = "cust_account_id")
     private Integer cust_account_id;
 
-    @Column(name = "address", nullable = false, length = 30)
+    @Column(name = "address")
     private String address;
 
-    @Column(name = "city", nullable = false, length = 30)
+    @Column(name = "city")
     private String city;
 
-    @Column(name = "department", nullable = false, length = 30)
+    @Column(name = "department")
     private String department;
 
-    @Column(name = "Sales_person_code", nullable = false, length = 30)
+    @Column(name = "Sales_person_code")
     private String Sales_person_code;
 
-    @Column(name = "Sales_person_name", nullable = false, length = 30)
+    @Column(name = "Sales_person_name")
     private String Sales_person_name;
 
-    @Column(name = "Site_use_code", nullable = false, length = 30)
+    @Column(name = "Site_use_code")
     private String Site_use_code;
 
-    @Column(name = "CP_type_order_id", length = 10, insertable = false,  updatable = false)
+    @Column(name = "CP_type_order_id")
     private Integer CP_type_order_id;
 
-    @Column(name = "organization_id", nullable = false, length = 10)
+    @Column(name = "organization_id")
     private Integer organization_id;
 
-    @Column(name = "party_site_id", nullable = false, length = 10)
+    @Column(name = "party_site_id")
     private Integer party_site_id;
-
-
-    /*
-    @ManyToOne
-    /* name="CP_id_user" columna de la entidad actual,
-    referencedColumnName = "CP_id_user" hace referencia a la columna de otra tabla
-    *//*
-    @JoinColumn(name="cust_account_id", referencedColumnName = "cust_account_id", nullable = false, foreignKey = @ForeignKey(name = "FK_addresses_users_account") )
-    @Getter
-    @Setter
-    private UsersEntity usersEntity;*/
-
 
 }
 

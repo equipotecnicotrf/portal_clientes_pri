@@ -17,10 +17,10 @@ public class AuditEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long CP_Audit_id;
 
-    @Column(name = "CP_id_user", nullable = false)
+    @Column(name = "CP_id_user") ///cp_user_id
     private Integer CP_id_user;
 
-    @Column(name = "CP_Audit_description", nullable = false, length = 30)
+    @Column(name = "CP_Audit_description")
     private String CP_audit_description;
 
     @Column(name = "CP_Audit _Date" )
@@ -30,14 +30,5 @@ public class AuditEntity {
     protected void onCreate(){
         CP_audit_date = new Date();
     }
-
-   /* @ManyToOne*/
-    /* name="CP_id_user" columna de la entidad actual,
-    referencedColumnName = "CP_id_user" hace referencia a la columna de otra tabla
-    */
-   /* @JoinColumn(name="CP_id_user", referencedColumnName = "CP_user_id", nullable = false )
-    @Getter
-    @Setter
-    private UsersEntity usersEntity;*/
 
 }

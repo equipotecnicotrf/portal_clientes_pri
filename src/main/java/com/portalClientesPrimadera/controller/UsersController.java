@@ -79,7 +79,7 @@ public class UsersController {
         }
     }
 
-    @GetMapping("/Users/{username}")
+    @GetMapping("/Username")
     public ResponseEntity<UsersEntity> listarUserPorusername(@RequestParam String username){
         UsersEntity users = usersRepository.findByUsername(username);
         return ResponseEntity.ok(users);

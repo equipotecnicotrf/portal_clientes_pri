@@ -11,7 +11,4 @@ import java.util.Optional;
 @Repository
 public interface AccessRepository extends JpaRepository<AccessEntity, Long> {
 
-    @Query("select ac from AccessEntity ac where ac.CP_Access_id = ?1")
-    Optional<AccessEntity> getAccessByCP_Access_id(Long CP_Access_id);
-
 }

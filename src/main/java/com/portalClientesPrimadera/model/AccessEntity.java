@@ -18,13 +18,13 @@ public class AccessEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long CP_Access_id;
 
-    @Column(name = "CP_rol_id", nullable = false)
+    @Column(name = "CP_rol_id")
     private Long CP_rol_id;
 
-    @Column(name = "CP_context_id", nullable = false)
+    @Column(name = "CP_context_id")
     private Long CP_context_id;
 
-    @Column(name = "CP_Access_assign", nullable = false, length =10)
+    @Column(name = "CP_Access_assign")
     private Integer CP_access_assign;
 
 }

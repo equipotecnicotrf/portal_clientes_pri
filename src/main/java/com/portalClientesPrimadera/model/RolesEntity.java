@@ -17,18 +17,14 @@ public class RolesEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long CP_rol_id;
 
-    @Column(name = "CP_rol_name", nullable = false, length = 30)
+    @Column(name = "CP_rol_name")
     private String CP_rol_name;
 
-    @Column(name = "CP_rol_description", nullable = false, length = 30)
+    @Column(name = "CP_rol_description")
     private String CP_rol_description;
 
-    @Column(name = "CP_rol_status", nullable = false, length = 30)
+    @Column(name = "CP_rol_status")
     private String CP_rol_status;
 
-   /* @OneToMany(mappedBy = "rolesEntity")
-    @Getter
-    @Setter
-    private List<UsersEntity> users;*/
 
 }

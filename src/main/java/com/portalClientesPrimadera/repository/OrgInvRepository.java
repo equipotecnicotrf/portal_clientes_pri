@@ -11,7 +11,5 @@ import java.util.Optional;
 @Repository
 public interface OrgInvRepository extends JpaRepository <OrgInvEntity, Long> {
 
-    @Query("select o from OrgInvEntity o where o.organization_id = ?1")
-    Optional<OrgInvEntity> getorganization_id(Integer organization_id);
 
 }
