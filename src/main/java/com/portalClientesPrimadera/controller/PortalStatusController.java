@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins =  "http://localhost:3000")
+@CrossOrigin(origins =  "http://localhost:5173/")
 @RestController
 @RequestMapping("/api/v1")
 public class PortalStatusController {
@@ -28,10 +28,10 @@ public class PortalStatusController {
         return portalStatusRepository.save(PortalStatusEntity);
     }
 
-    @GetMapping("/PortalStatus/{CP_portal_id}")
-    public ResponseEntity<PortalStatusEntity> getPortalStatusByCP_portal_id (@PathVariable Long CP_portal_id){
-        PortalStatusEntity portalStatus = portalStatusRepository.getPortalStatusById(CP_portal_id)
-                .orElseThrow(()->new ResourceNotFoundException("El portal status no existe con el CP_portal_id " + CP_portal_id));
+    @GetMapping("/PortalStatus/{id}")
+    public ResponseEntity<PortalStatusEntity> getPortalStatusByCP_portal_id (@PathVariable Long id){
+        PortalStatusEntity portalStatus = portalStatusRepository.findById(id)
+                .orElseThrow(()->new ResourceNotFoundException("El portal status no existe con el CP_portal_id " + id));
         return ResponseEntity.ok(portalStatus);
     }
 

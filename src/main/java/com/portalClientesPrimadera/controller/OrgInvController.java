@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins =  "http://localhost:3000")
+@CrossOrigin(origins =  "http://localhost:5173/")
 @RestController
 @RequestMapping("/api/v1")
 public class OrgInvController {
@@ -27,10 +27,10 @@ public class OrgInvController {
         return orgInvRepository.save(orgInv);
     }
 
-    @GetMapping("/OrgInv/{organization_id}")
-    public ResponseEntity<OrgInvEntity> getOrgInvByOrgId(@PathVariable Integer organization_id){
-        OrgInvEntity orgInv = orgInvRepository.getorganization_id(organization_id)
-                .orElseThrow(()->new ResourceNotFoundException("La organización de inventario con el organization_id no existe"));
+    @GetMapping("/OrgInv/{id}")
+    public ResponseEntity<OrgInvEntity> getOrgInvByOrgId(@PathVariable Long id){
+        OrgInvEntity orgInv = orgInvRepository.findById(id)
+                .orElseThrow(()->new ResourceNotFoundException("La organización de inventario con el organization_id no existe" + id));
         return ResponseEntity.ok(orgInv);
     }
 

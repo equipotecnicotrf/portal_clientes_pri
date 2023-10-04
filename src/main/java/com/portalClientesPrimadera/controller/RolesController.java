@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins =  "http://localhost:3000")
+@CrossOrigin(origins =  "http://localhost:5173/")
 @RestController
 @RequestMapping("/api/v1")
 public class RolesController {
@@ -28,12 +28,23 @@ public class RolesController {
         return rolesRepository.save(rolesEntity);
     }
 
-
-    @GetMapping("/Roles/{CP_rol_id}")
-    public ResponseEntity<RolesEntity> getRolByCP_rol_id(@PathVariable Long CP_rol_id) {
-        RolesEntity rol = rolesRepository.getRolByCP_rol_id(CP_rol_id)
-                .orElseThrow(()->new ResourceNotFoundException("El rol no existe con el CP_rol_id" + CP_rol_id));
+    @GetMapping("/Roles/{id}")
+    public ResponseEntity<RolesEntity> getRolByCP_rol_id(@PathVariable Long id) {
+        RolesEntity rol = rolesRepository.findById(id)
+                .orElseThrow(()->new ResourceNotFoundException("El rol no existe con el CP_rol_id" + id));
         return ResponseEntity.ok(rol);
+    }
+
+    @PutMapping("/Roles/{id}")
+    public ResponseEntity<RolesEntity> actualizarRolPorId(@PathVariable Long id, @RequestBody RolesEntity roleRequest) {
+        RolesEntity rol = rolesRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("El rol con este ID no existe : " + id));
+        rol.setCP_rol_name(roleRequest.getCP_rol_name());
+        rol.setCP_rol_description(roleRequest.getCP_rol_description());
+        rol.setCP_rol_status(roleRequest.getCP_rol_status());
+
+        RolesEntity RolActualizado = rolesRepository.save(rol);
+        return ResponseEntity.ok(RolActualizado);
     }
 
 }

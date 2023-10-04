@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins =  "http://localhost:3000")
+@CrossOrigin(origins =  "http://localhost:5173/")
 @RestController
 @RequestMapping("/api/v1")
 public class ContextsController {
@@ -28,10 +28,10 @@ public class ContextsController {
         return contextRepository.save(context);
     }
 
-    @GetMapping("/Contexts/{CP_context_id}")
-    public ResponseEntity<ContextsEntity> getAuditByCP_context_id(@PathVariable Long CP_context_id) {
-        ContextsEntity context = contextRepository.getCP_context_id(CP_context_id)
-                .orElseThrow(() -> new ResourceNotFoundException("El contexto no existe con el CP_context_id " + CP_context_id));
+    @GetMapping("/Contexts/{id}")
+    public ResponseEntity<ContextsEntity> getAuditByCP_context_id(@PathVariable Long id) {
+        ContextsEntity context = contextRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("El contexto no existe con el CP_context_id " + id));
         return ResponseEntity.ok(context);
     }
 
