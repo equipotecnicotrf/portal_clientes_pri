@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins =  "http://localhost:3000")
+@CrossOrigin(origins =  "http://localhost:5173/")
 @RestController
 @RequestMapping("/api/v1")
 public class AccessController {
@@ -28,10 +28,10 @@ public class AccessController {
         return accessRepository.save(accessEntity);
     }
 
-    @GetMapping("/Access/{CP_Access_id}")
-    public ResponseEntity<AccessEntity> getAccessByCP_Access_id(@PathVariable Long CP_Access_id) {
-        AccessEntity access = accessRepository.getAccessByCP_Access_id(CP_Access_id)
-                .orElseThrow(()->new ResourceNotFoundException("El acceso no existe con el CP_Access_id" + CP_Access_id));
+    @GetMapping("/Access/{id}")
+    public ResponseEntity<AccessEntity> getAccessByCP_Access_id(@PathVariable Long id) {
+        AccessEntity access = accessRepository.findById(id)
+                .orElseThrow(()->new ResourceNotFoundException("El acceso no existe con el CP_Access_id" + id));
         return ResponseEntity.ok(access);
     }
 
