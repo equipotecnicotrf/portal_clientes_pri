@@ -11,7 +11,4 @@ import java.util.Optional;
 @Repository
 public interface ContextsRepository extends JpaRepository<ContextsEntity, Long> {
 
-    @Query("select ce from ContextsEntity ce where ce.CP_context_id = ?1")
-    Optional<ContextsEntity> getCP_context_id(Long CP_context_id);
-
 }

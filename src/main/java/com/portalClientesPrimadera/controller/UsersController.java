@@ -75,7 +75,14 @@ public class UsersController {
         } else {
             session.setAttribute("usuario", users);
             return "Loging"+ " " + users.getCP_user_id() ;
+
         }
+    }
+
+    @GetMapping("/Username")
+    public ResponseEntity<UsersEntity> listarUserPorusername(@RequestParam String username){
+        UsersEntity users = usersRepository.findByUsername(username);
+        return ResponseEntity.ok(users);
     }
 
 }

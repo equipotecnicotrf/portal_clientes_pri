@@ -10,7 +10,5 @@ import java.util.Optional;
 @Repository
 public interface PortalStatusRepository extends JpaRepository<PortalStatusEntity, Long> {
 
-    @Query("select pr from PortalStatusEntity pr where pr.CP_portal_id = ?1")
-    Optional<PortalStatusEntity> getPortalStatusById(Long CP_portal_id);
 
 }

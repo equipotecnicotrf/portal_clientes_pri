@@ -10,7 +10,7 @@ import java.util.List;
 @Builder
 @Data
 @Entity
-@Table(name = "Users",uniqueConstraints = {@UniqueConstraint(columnNames = "CP_username")})
+@Table(name = "Users",uniqueConstraints = @UniqueConstraint(columnNames = "CP_username"))
 public class UsersEntity {
     
     @Id
@@ -46,6 +46,5 @@ public class UsersEntity {
 
     @Column(name = "party_id")
     private Integer party_id;
-
 
 }

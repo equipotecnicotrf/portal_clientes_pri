@@ -17,13 +17,13 @@ public class AuditEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long CP_Audit_id;
 
-    @Column(name = "CP_id_user", nullable = false)
+    @Column(name = "CP_id_user") ///cp_user_id
     private Integer CP_id_user;
 
-    @Column(name = "CP_Audit_description", nullable = false, length = 30)
+    @Column(name = "CP_Audit_description")
     private String CP_audit_description;
 
-    @Column(name = "CP_Audit _Date")
+    @Column(name = "CP_Audit _Date" )
     private Date CP_audit_date;
 
     @PrePersist

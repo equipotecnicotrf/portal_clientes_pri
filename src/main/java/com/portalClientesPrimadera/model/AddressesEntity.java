@@ -11,7 +11,8 @@ import lombok.*;
 @Table(name = "Addresses",uniqueConstraints = @UniqueConstraint(columnNames = "site_use_id"))
 public class AddressesEntity {
     @Id
-    private Integer site_use_id;
+    @Column(name = "site_use_id")
+    private Long site_use_id;
 
     @Column(name = "cust_account_id")
     private Integer cust_account_id;
@@ -42,9 +43,6 @@ public class AddressesEntity {
 
     @Column(name = "party_site_id")
     private Integer party_site_id;
-
-
-
 
 }
 

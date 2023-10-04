@@ -14,13 +14,13 @@ import java.util.List;
 public class TypeOrderEntity {
 
     @Id
-    @Column(name = "CP_type_order_id", nullable = false, length =10)
-    private Integer CP_type_order_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long CP_type_order_id;
 
-    @Column(name = "CP_type_order_description", nullable = false, length = 30)
+    @Column(name = "CP_type_order_description")
     private String CP_type_order_description;
 
-    @Column(name = "CP_type_order_meaning",nullable = false, length =30)
+    @Column(name = "CP_type_order_meaning")
         private String CP_type_order_meaning;
 
 

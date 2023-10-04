@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins =  "http://localhost:3000")
+@CrossOrigin(origins =  "http://localhost:5173/")
 @RestController
 @RequestMapping("/api/v1")
 public class TypeOrdersController {
@@ -27,10 +27,10 @@ public class TypeOrdersController {
         return typeOrderRepository.save(typeOrderEntity);
     }
 
-    @GetMapping("/TypeOrders/{CP_type_order_id}")
-    public ResponseEntity<TypeOrderEntity> getTypeOrderById(@PathVariable Integer CP_type_order_id) {
-        TypeOrderEntity typeOrder = typeOrderRepository.getCP_type_order_id(CP_type_order_id)
-                .orElseThrow(()->new ResourceNotFoundException("El type order no existe con el CP_type_order_id" + CP_type_order_id ));
+    @GetMapping("/TypeOrders/{id}")
+    public ResponseEntity<TypeOrderEntity> getTypeOrderById(@PathVariable Long id) {
+        TypeOrderEntity typeOrder = typeOrderRepository.findById(id)
+                .orElseThrow(()->new ResourceNotFoundException("El type order no existe con el CP_type_order_id" + id ));
         return ResponseEntity.ok(typeOrder);
     }
 }
