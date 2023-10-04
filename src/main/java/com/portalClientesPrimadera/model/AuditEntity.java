@@ -31,13 +31,4 @@ public class AuditEntity {
         CP_audit_date = new Date();
     }
 
-   /* @ManyToOne*/
-    /* name="CP_id_user" columna de la entidad actual,
-    referencedColumnName = "CP_id_user" hace referencia a la columna de otra tabla
-    */
-   /* @JoinColumn(name="CP_id_user", referencedColumnName = "CP_user_id", nullable = false )
-    @Getter
-    @Setter
-    private UsersEntity usersEntity;*/
-
 }
