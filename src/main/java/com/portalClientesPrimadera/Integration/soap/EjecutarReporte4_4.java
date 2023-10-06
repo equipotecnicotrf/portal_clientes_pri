@@ -59,7 +59,7 @@ public class EjecutarReporte4_4 {
 
             // Imprimir la solicitud SOAP completa
             System.out.println("Solicitud SOAP:");
-            soapMessage.writeTo(System.out);
+            soapMessage.writeTo(System.out);//Borrar esta linea, no es necesaria despues de las pruebas
 
             // Enviar la solicitud SOAP al servicio web
             String endpointUrl = "https://efdg-test.fa.us6.oraclecloud.com:443/xmlpserver/services/v2/ReportService";
@@ -71,8 +71,8 @@ public class EjecutarReporte4_4 {
             String responseXml = outputStream.toString();
 
             // Imprimir la respuesta en la consola
-            System.out.println("Respuesta del servicio web:");
-            System.out.println(responseXml);
+            System.out.println("Respuesta del servicio web:");//Borrar esta linea, no es necesaria despues de las pruebas
+            System.out.println(responseXml);//Borrar esta linea, no es necesaria despues de las pruebas
 
             // Procesar el contenido de reportBytes
             try {
@@ -143,7 +143,7 @@ public class EjecutarReporte4_4 {
                     }
 
                 } else {
-                    System.out.println("Elemento reportBytes no encontrado en la respuesta.");
+                    System.out.println("Elemento reportBytes no encontrado en la respuesta.");//Cambiar, se debe manejar de otra manera con un mensaje para el front
                 }
             } catch (Exception e) {
                 e.printStackTrace();
