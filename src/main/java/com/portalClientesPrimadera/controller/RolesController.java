@@ -2,8 +2,6 @@ package com.portalClientesPrimadera.controller;
 
 import com.portalClientesPrimadera.exception.ResourceNotFoundException;
 import com.portalClientesPrimadera.model.RolesEntity;
-import com.portalClientesPrimadera.model.TypeOrderEntity;
-import com.portalClientesPrimadera.model.UsersEntity;
 import com.portalClientesPrimadera.repository.RolesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

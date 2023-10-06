@@ -2,7 +2,6 @@ package com.portalClientesPrimadera.controller;
 
 import com.portalClientesPrimadera.exception.ResourceNotFoundException;
 import com.portalClientesPrimadera.model.AddressesEntity;
-import com.portalClientesPrimadera.model.UsersEntity;
 import com.portalClientesPrimadera.repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
