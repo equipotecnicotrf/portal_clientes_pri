@@ -1,20 +1,14 @@
 package com.portalClientesPrimadera.controller;
 
-import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
 
 import com.portalClientesPrimadera.exception.ResourceNotFoundException;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import org.apache.catalina.filters.ExpiresFilter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.portalClientesPrimadera.model.UsersEntity;
 import com.portalClientesPrimadera.repository.UsersRepository;
-import java.util.Base64;
 
 @CrossOrigin(origins =  "http://localhost:5173")
 @RestController
