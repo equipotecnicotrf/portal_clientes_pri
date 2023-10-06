@@ -30,7 +30,7 @@ public class UsersEntity {
     private String CP_email;
 
     @Column(name = "cust_account_id")
-    private Integer cust_account_id;
+    private Long cust_account_id;
 
     @Column(name = "cust_name")
     private String cust_name;
@@ -45,6 +45,6 @@ public class UsersEntity {
     private String CP_cell_phone;
 
     @Column(name = "party_id")
-    private Integer party_id;
+    private Long party_id;
 
 }
