@@ -4,6 +4,7 @@ import java.util.Base64;
 import java.util.List;
 
 import com.portalClientesPrimadera.exception.ResourceNotFoundException;
+import com.portalClientesPrimadera.model.UsersEntity;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

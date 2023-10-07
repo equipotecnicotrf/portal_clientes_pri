@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.portalClientesPrimadera</groupId>
 	<artifactId>portalClientesService</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>portalClientesService</name>
 	<description>PortalClientesServices</description>
 	<properties>
