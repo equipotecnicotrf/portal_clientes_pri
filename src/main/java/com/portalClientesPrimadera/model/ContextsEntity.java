@@ -5,14 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Columns;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Data
 @Entity
-@Table(name = "Context",uniqueConstraints = @UniqueConstraint(columnNames = "CP_context_id"))
+@Table(name = "Context", uniqueConstraints = @UniqueConstraint(columnNames = "CP_context_id"))
 public class ContextsEntity {
 
     @Id

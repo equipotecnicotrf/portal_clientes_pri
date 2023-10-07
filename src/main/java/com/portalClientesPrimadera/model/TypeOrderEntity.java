@@ -3,14 +3,12 @@ package com.portalClientesPrimadera.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Data
 @Entity
-@Table(name = "Type_order",uniqueConstraints = @UniqueConstraint(columnNames = "CP_type_order_id"))
+@Table(name = "Type_order", uniqueConstraints = @UniqueConstraint(columnNames = "CP_type_order_id"))
 public class TypeOrderEntity {
 
     @Id
@@ -23,7 +21,7 @@ public class TypeOrderEntity {
     @Column(name = "CP_type_order_meaning")
     private String CP_type_order_meaning;
 
-    @Column(name= "CP_type_order_status")
+    @Column(name = "CP_type_order_status")
     private String CP_type_order_status;
 
 }
