@@ -15,7 +15,7 @@ public class AddressesEntity {
     private Long site_use_id;
 
     @Column(name = "cust_account_id")
-    private Integer cust_account_id;
+    private Long cust_account_id;
 
     @Column(name = "address")
     private String address;
@@ -27,7 +27,7 @@ public class AddressesEntity {
     private String department;
 
     @Column(name = "Sales_person_code")
-    private String Sales_person_code;
+    private Long Sales_person_code;
 
     @Column(name = "Sales_person_name")
     private String Sales_person_name;
@@ -39,10 +39,10 @@ public class AddressesEntity {
     private Integer CP_type_order_id;
 
     @Column(name = "organization_id")
-    private Integer organization_id;
+    private Long organization_id;
 
     @Column(name = "party_site_id")
-    private Integer party_site_id;
+    private Long party_site_id;
 
 }
 

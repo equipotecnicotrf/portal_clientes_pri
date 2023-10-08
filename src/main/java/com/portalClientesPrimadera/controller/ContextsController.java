@@ -1,7 +1,6 @@
 package com.portalClientesPrimadera.controller;
 
 import com.portalClientesPrimadera.exception.ResourceNotFoundException;
-import com.portalClientesPrimadera.model.AuditEntity;
 import com.portalClientesPrimadera.model.ContextsEntity;
 import com.portalClientesPrimadera.repository.ContextsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins =  "http://localhost:5173/")
+@CrossOrigin(origins = "http://localhost:5173/")
 @RestController
 @RequestMapping("/api/v1")
 public class ContextsController {
@@ -19,7 +18,7 @@ public class ContextsController {
     ContextsRepository contextRepository;
 
     @GetMapping("/Contexts")
-    public List<ContextsEntity> getContextsList () {
+    public List<ContextsEntity> getContextsList() {
         return contextRepository.findAll();
     }
 
@@ -34,6 +33,5 @@ public class ContextsController {
                 .orElseThrow(() -> new ResourceNotFoundException("El contexto no existe con el CP_context_id " + id));
         return ResponseEntity.ok(context);
     }
-
 
 }
