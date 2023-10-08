@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.portalClientesPrimadera</groupId>
-	<artifactId>portalClientesService</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>portalClientesService</name>
-	<description>PortalClientesServices</description>
+	<artifactId>portalclientesservice</artifactId>
+	<version>1.0.0</version>
+	<name>portalclientesservice</name>
+	<description>portalclientesservice</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

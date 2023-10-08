@@ -3,14 +3,12 @@ package com.portalClientesPrimadera.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Data
 @Entity
-@Table(name = "Roles",uniqueConstraints = @UniqueConstraint(columnNames = "CP_rol_id"))
+@Table(name = "Roles", uniqueConstraints = @UniqueConstraint(columnNames = "CP_rol_id"))
 public class RolesEntity {
 
     @Id
@@ -25,6 +23,5 @@ public class RolesEntity {
 
     @Column(name = "CP_rol_status")
     private String CP_rol_status;
-
 
 }
