@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins =  "http://localhost:5173/")
 @RestController
 @RequestMapping("/api/v1")
 public class RolesController {
@@ -18,18 +17,19 @@ public class RolesController {
     RolesRepository rolesRepository;
 
     @GetMapping("/Roles")
-    public List<RolesEntity> ListarRoles(){
+    public List<RolesEntity> ListarRoles() {
         return rolesRepository.findAll();
     }
+
     @PostMapping("/Roles")
-    public RolesEntity saveRol (@RequestBody RolesEntity rolesEntity){
+    public RolesEntity saveRol(@RequestBody RolesEntity rolesEntity) {
         return rolesRepository.save(rolesEntity);
     }
 
     @GetMapping("/Roles/{id}")
     public ResponseEntity<RolesEntity> getRolByCP_rol_id(@PathVariable Long id) {
         RolesEntity rol = rolesRepository.findById(id)
-                .orElseThrow(()->new ResourceNotFoundException("El rol no existe con el CP_rol_id" + id));
+                .orElseThrow(() -> new ResourceNotFoundException("El rol no existe con el CP_rol_id" + id));
         return ResponseEntity.ok(rol);
     }
 

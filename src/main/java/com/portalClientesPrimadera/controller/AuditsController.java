@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api/v1")
 public class AuditsController {
@@ -30,7 +29,8 @@ public class AuditsController {
     @GetMapping("/audits/{id}")
     public ResponseEntity<AuditEntity> getAuditByCP_Audit_id(@PathVariable Long id) {
         AuditEntity auditEntity = auditRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("El registro de auditoria no existe con el CP_Audit_id " + id));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "El registro de auditoria no existe con el CP_Audit_id " + id));
         return ResponseEntity.ok(auditEntity);
     }
 
