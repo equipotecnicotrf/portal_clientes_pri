@@ -12,7 +12,7 @@ import lombok.*;
 public class AvailabilityEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long inventory_item_i;
+    private Long inventory_item_id;
 
     @Column(name = "organization_id")
     private Long organization_id;
