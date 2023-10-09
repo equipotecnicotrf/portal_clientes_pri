@@ -10,7 +10,7 @@ import lombok.*;
 @Entity
 @Table(name = "shopping_cart",uniqueConstraints = @UniqueConstraint(columnNames = "CP_cart_id"))
 
-public class shopping_cart {
+public class ShoppingCartEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
