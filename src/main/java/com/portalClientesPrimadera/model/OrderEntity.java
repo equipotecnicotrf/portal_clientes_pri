@@ -8,8 +8,10 @@ import lombok.*;
 @Builder
 @Data
 @Entity
-@Table(name = "Order",uniqueConstraints = @UniqueConstraint(columnNames = "CP_order_id"))
+@Table(name = "Order_table",uniqueConstraints = @UniqueConstraint(columnNames = "CP_order_id"))
+
 public class OrderEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long CP_order_id;
