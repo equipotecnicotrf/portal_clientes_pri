@@ -1,22 +1,17 @@
 package com.portalClientesPrimadera.controller;
 
-import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
 
 import com.portalClientesPrimadera.exception.ResourceNotFoundException;
-import jakarta.servlet.http.HttpServletResponse;
+import com.portalClientesPrimadera.model.UsersEntity;
 import jakarta.servlet.http.HttpSession;
-import org.apache.catalina.filters.ExpiresFilter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.portalClientesPrimadera.model.UsersEntity;
 import com.portalClientesPrimadera.repository.UsersRepository;
-import java.util.Base64;
 
-@CrossOrigin(origins =  "http://localhost:5173")
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api/v1")
 public class UsersController {
@@ -24,33 +19,31 @@ public class UsersController {
     @Autowired
     private UsersRepository usersRepository;
 
-
     @GetMapping("/Users")
-    public List<UsersEntity> ListarUsers(){
+    public List<UsersEntity> ListarUsers() {
         return usersRepository.findAll();
     }
 
     @PostMapping("/Users")
-    public UsersEntity saveUsers(@RequestBody UsersEntity users){
+    public UsersEntity saveUsers(@RequestBody UsersEntity users) {
         String encodepass = Base64.getEncoder().encodeToString(users.getCP_Password().getBytes());
         users.setCP_Password(encodepass);
         return usersRepository.save(users);
     }
 
     @GetMapping("/Users/{id}")
-    public ResponseEntity<UsersEntity> listarUserPorId(@PathVariable Long id){
+    public ResponseEntity<UsersEntity> listarUserPorId(@PathVariable Long id) {
         UsersEntity users = usersRepository.findById(id)
-            .orElseThrow(() -> new ResourceNotFoundException("El usuario con este ID no existe : " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("El usuario con este ID no existe : " + id));
         return ResponseEntity.ok(users);
     }
 
     @PutMapping("/Users/{id}")
-    public ResponseEntity<UsersEntity> actualizarUserPorId(@PathVariable Long id, @RequestBody UsersEntity usersRequest){
+    public ResponseEntity<UsersEntity> actualizarUserPorId(@PathVariable Long id,
+            @RequestBody UsersEntity usersRequest) {
         UsersEntity users = usersRepository.findById(id)
-            .orElseThrow(() -> new ResourceNotFoundException("El usuario con este ID no existe : " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("El usuario con este ID no existe : " + id));
         users.setUsername(usersRequest.getUsername());
-        String encodepass = Base64.getEncoder().encodeToString(usersRequest.getCP_Password().getBytes());
-        users.setCP_Password(encodepass);
         users.setCP_name(usersRequest.getCP_name());
         users.setCP_email(usersRequest.getCP_email());
         users.setCust_account_id(usersRequest.getCust_account_id());
@@ -66,21 +59,21 @@ public class UsersController {
     }
 
     @PostMapping("/login")
-    public String loginUser (@RequestParam String username, @RequestParam String password, HttpSession session){
+    public String loginUser(@RequestParam String username, @RequestParam String password, HttpSession session) {
         UsersEntity users = usersRepository.findByUsername(username);
         String encodepass = Base64.getEncoder().encodeToString(password.getBytes());
         if (users == null || !users.getCP_Password().equals(encodepass)) {
-            session.setAttribute("mensaje error","usuario o contraseña incorrectos");
+            session.setAttribute("mensaje error", "usuario o contraseña incorrectos");
             return "usuario o contraseña incorrectos";
         } else {
             session.setAttribute("usuario", users);
-            return "Loging"+ " " + users.getCP_user_id() ;
+            return "Loging" + " " + users.getCP_user_id();
 
         }
     }
 
     @GetMapping("/Username")
-    public ResponseEntity<UsersEntity> listarUserPorusername(@RequestParam String username){
+    public ResponseEntity<UsersEntity> listarUserPorusername(@RequestParam String username) {
         UsersEntity users = usersRepository.findByUsername(username);
         return ResponseEntity.ok(users);
     }
