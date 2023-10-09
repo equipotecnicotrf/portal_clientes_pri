@@ -43,6 +43,6 @@ public class UsersEntity {
     private String CP_cell_phone;
 
     @Column(name = "party_id")
-    private Integer party_id;
+    private Long party_id;
 
 }
