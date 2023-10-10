@@ -16,22 +16,22 @@ public class OrderLinesEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long CP_order_line_id;
 
-    @Column(name = "CP_order_id")
+    @Column(name = "CP_order_id", nullable = false)
     private Long CP_order_id;
 
-    @Column(name = "CP_order_line_number")
+    @Column(name = "CP_order_line_number", nullable = false)
     private Long CP_order_line_number;
 
-    @Column(name = "inventory_item_id")
+    @Column(name = "inventory_item_id", nullable = false)
     private Long inventory_item_id;
 
-    @Column(name = "CP_order_Quantity_units")
+    @Column(name = "CP_order_Quantity_units", nullable = false)
     private Long CP_order_Quantity_units;
 
-    @Column(name = "CP_order_Quantity_packages")
+    @Column(name = "CP_order_Quantity_packages", nullable = false)
     private Long CP_order_Quantity_packages;
 
-    @Column(name = "CP_order_Quantity_volume")
+    @Column(name = "CP_order_Quantity_volume", nullable = false)
     private Long CP_order_Quantity_volume;
     
 }
