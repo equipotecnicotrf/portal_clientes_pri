@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins =  "http://localhost:5173")
 @RestController
 @RequestMapping("/api/v1")
 public class ReporteDireccionesController {
@@ -16,8 +15,10 @@ public class ReporteDireccionesController {
     private EjecutarReporteDireccionesV2 ejecutarReporteDireccionesV2;
 
     @GetMapping("/reporteDirecciones/filtrar")
-    public List<DireccionReporte> listDirecciones (@RequestParam String custAccountID) {
-        return ejecutarReporteDireccionesV2.ReporteDirecciones("/Custom/PRIMADERA/PORTAL_CLIENTES/Rpt_MaestroClientes.xdo", "INTEGRACION_PRI", "Oracle2023*", "Compañia","PRI_UNIDAD_NEGOCIO", "P_CUENTA", custAccountID);
+    public List<DireccionReporte> listDirecciones(@RequestParam String custAccountID) {
+        return ejecutarReporteDireccionesV2.ReporteDirecciones(
+                "/Custom/PRIMADERA/PORTAL_CLIENTES/Rpt_MaestroClientes.xdo", "INTEGRACION_PRI", "Oracle2023*",
+                "Compañia", "PRI_UNIDAD_NEGOCIO", "P_CUENTA", custAccountID);
 
     }
 
