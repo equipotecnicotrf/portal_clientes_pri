@@ -15,13 +15,13 @@ public class IVAEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long CP_IVA_id;
 
-    @Column(name = "CP_IVA")
+    @Column(name = "CP_IVA", nullable = false)
     private Long CP_IVA;
 
-    @Column(name = "CP_IVA_date_start")
+    @Column(name = "CP_IVA_date_start", nullable = false)
     private Date CP_IVA_date_start;
 
-    @Column(name = "CP_IVA_date_end")
+    @Column(name = "CP_IVA_date_end", nullable = false)
     private Date CP_IVA_date_end;
 
     
