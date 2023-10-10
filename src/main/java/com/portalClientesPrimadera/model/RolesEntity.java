@@ -15,13 +15,13 @@ public class RolesEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long CP_rol_id;
 
-    @Column(name = "CP_rol_name")
+    @Column(name = "CP_rol_name", nullable = false)
     private String CP_rol_name;
 
-    @Column(name = "CP_rol_description")
+    @Column(name = "CP_rol_description", nullable = false)
     private String CP_rol_description;
 
-    @Column(name = "CP_rol_status")
+    @Column(name = "CP_rol_status", nullable = false)
     private String CP_rol_status;
 
 }

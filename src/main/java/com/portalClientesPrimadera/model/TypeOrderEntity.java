@@ -15,13 +15,13 @@ public class TypeOrderEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long CP_type_order_id;
 
-    @Column(name = "CP_type_order_meaning")
+    @Column(name = "CP_type_order_meaning", nullable = false)
     private String CP_type_order_meaning;
 
-    @Column(name = "CP_type_order_description")
+    @Column(name = "CP_type_order_description", nullable = false)
     private String CP_type_order_description;
 
-    @Column(name = "CP_type_order_status")
+    @Column(name = "CP_type_order_status", nullable = false)
     private String CP_type_order_status;
 
 }
