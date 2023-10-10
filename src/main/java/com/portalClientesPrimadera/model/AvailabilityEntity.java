@@ -10,8 +10,9 @@ import lombok.*;
 @Entity
 @Table(name = "Availability", uniqueConstraints = @UniqueConstraint(columnNames = "inventory_item_id"))
 public class AvailabilityEntity {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "inventory_item_id")
     private Long inventory_item_id;
 
     @Column(name = "organization_id")

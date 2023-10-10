@@ -30,6 +30,6 @@ public class PricesEntity {
     private Long unit_price;
 
     @Column(name = "CP_IVA_id")
-    private String cust_name;
+    private String CP_IVA_id;
 
 }
