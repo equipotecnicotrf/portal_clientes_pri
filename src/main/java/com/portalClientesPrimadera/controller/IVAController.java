@@ -33,10 +33,10 @@ public class IVAController {
         return ivaRepository.save(IVA);
     }
 
-    @GetMapping ("/IVA/[id]")
+    @GetMapping ("/IVA/{id}") 
     public ResponseEntity <IVAEntity> GetPricesById(@PathVariable Long id){
         IVAEntity IVA = ivaRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("El IVA no se encuentra con el id " + id));
-        return ResponseEntity.ok(IVA);
+        return ResponseEntity.ok(IVA); 
     }
 
 }

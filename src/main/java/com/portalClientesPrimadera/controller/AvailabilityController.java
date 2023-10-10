@@ -34,7 +34,7 @@ public class AvailabilityController {
         return availabilityRepository.save(Availability);
     }
 
-    @GetMapping ("/Availability/[id]")
+    @GetMapping ("/Availability/{id}")
     public ResponseEntity <AvailabilityEntity> GetPricesById(@PathVariable Long id){
         AvailabilityEntity Availability = availabilityRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("El Availability no se encuentra con el id " + id));
         return ResponseEntity.ok(Availability);

@@ -36,7 +36,7 @@ public class PricesController {
         return pricesRepository.save(Prices);
     }
 
-    @GetMapping ("/Prices/[id]")
+    @GetMapping ("/Prices/{id}")
     public ResponseEntity <PricesEntity> GetPricesById(@PathVariable Long id){
         PricesEntity Prices = pricesRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("El precio no se encuentra con el id " + id));
         return ResponseEntity.ok(Prices);
