@@ -14,7 +14,7 @@ public class AddressesEntity {
     @Column(name = "site_use_id")
     private Long site_use_id;
 
-    @Column(name = "cust_account_id")
+    @Column(name = "cust_account_id", nullable = false)
     private Long cust_account_id;
 
     @Column(name = "address")
