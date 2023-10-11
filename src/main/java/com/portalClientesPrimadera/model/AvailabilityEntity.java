@@ -21,10 +21,10 @@ public class AvailabilityEntity {
     @Column(name = "organization_code", nullable = false)
     private String organization_code;
 
-    @Column(name = "Quantity_units", nullable = false)
+    @Column(name = "Quantity_units")
     private Long Quantity_units;
 
-    @Column(name = "Quantity_packages", nullable = false)
+    @Column(name = "Quantity_packages")
     private Long Quantity_packages;
 
     
