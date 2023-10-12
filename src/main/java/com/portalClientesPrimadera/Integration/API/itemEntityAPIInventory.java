@@ -1,4 +1,4 @@
-package com.portalClientesPrimadera.model;
+package com.portalClientesPrimadera.Integration.API;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.portalClientesPrimadera.Integration.API.ContextApiInventory;

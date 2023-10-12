@@ -1,6 +1,5 @@
 package com.portalClientesPrimadera.Integration.API;
 
-import com.portalClientesPrimadera.model.itemEntityAPIInventory;
 import lombok.Getter;
 import lombok.Setter;
 

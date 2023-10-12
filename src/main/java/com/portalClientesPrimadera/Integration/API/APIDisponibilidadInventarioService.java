@@ -1,10 +1,8 @@
 package com.portalClientesPrimadera.Integration.API;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.portalClientesPrimadera.model.AvailabilityEntity;
-import com.portalClientesPrimadera.model.itemEntityAPIInventory;
 import com.portalClientesPrimadera.repository.AvailabilityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -29,15 +27,12 @@ public class APIDisponibilidadInventarioService {
 
     public ResponseEntity<String> consumirAPIInventario() throws JsonProcessingException {
         // URL de la API
-        String apiUrl = "https://efdg-test.fa.us6.oraclecloud.com//fscmRestApi/resources/11.13.18.05/inventoryOnhandBalances?q=OrganizationCode='PRI04'&q=SubinventoryCode='T_PTP'&q=SummaryLevel='Subinventory'&onlyData=true&orderBy=ItemNumber&limit=5&offset=0";
+        String apiUrl = "https://efdg-test.fa.us6.oraclecloud.com//fscmRestApi/resources/11.13.18.05/inventoryOnhandBalances?q=OrganizationCode='PRI04'&q=SubinventoryCode='T_PTP'&q=SummaryLevel='Subinventory'&onlyData=true&orderBy=ItemNumber";
         // Parametros adicionales
-        String q = "OrganizationCode='PRI04'&q=SubinventoryCode='T_PTP'&q=SummaryLevel='Subinventory'";
-        String onlyData = "true";
-        String orderBy = "ItemNumber";
-        String limit = "5";
-        String offset = "0";
+        //String q = "OrganizationCode='PRI04'&q=SubinventoryCode='T_PTP'&q=SummaryLevel='Subinventory'";
+        //String onlyData = "true";
+        //String orderBy = "ItemNumber";
         //Ful url para el consumo
-        String fullUrl = apiUrl + "?q=" + q + "&onlyData=" + onlyData + "&orderBy=" + orderBy + "&limit=" + limit + "&offset=" + offset;
 
         // Autorización básica (usuario:contraseña)
         String username = "INTEGRACION_PRI";
@@ -52,35 +47,53 @@ public class APIDisponibilidadInventarioService {
         headers.set("REST-Framework-Version", "7");
         headers.set("Content-Type", "application/json");
 
-        // Crear una entidad de solicitud con encabezados
-        HttpEntity<String> entity = new HttpEntity<>(headers);
+        Integer limit = 500;
+        Integer offset = 0;
 
-        // Realizar la solicitud GET a la API
-        ResponseEntity<String> response = new RestTemplate().exchange(apiUrl, HttpMethod.GET, entity, String.class);
+        boolean hasMore = true;
+        availabilityRepository.deleteAll();
 
-        if (response.getStatusCode().is2xxSuccessful()) {
-            String responseBody = response.getBody();
+        while (hasMore) {
 
-            ObjectMapper objectMapper = new ObjectMapper();
+            //Ful url para el consumo
+            String fullUrl = apiUrl + "&limit=" + limit + "&offset=" + offset;
 
-            ApiInventoryResponse apiResponse = objectMapper.readValue(responseBody, ApiInventoryResponse.class);
-            List<itemEntityAPIInventory> items = apiResponse.getItems();
+            // Crear una entidad de solicitud con encabezados
+            HttpEntity<String> entity = new HttpEntity<>(headers);
 
-            for (itemEntityAPIInventory i: items){
-                AvailabilityEntity availabilityEntity = new AvailabilityEntity();
-                availabilityEntity.setInventory_item_id(i.getInventoryItemId());
-                availabilityEntity.setQuantity_units(i.getPrimaryQuantity());
-                availabilityEntity.setOrganization_id(i.getOrganizationId());
-                availabilityEntity.setOrganization_code(i.getOrganizationCode());
+            // Realizar la solicitud GET a la API
+            ResponseEntity<String> response = new RestTemplate().exchange(fullUrl, HttpMethod.GET, entity, String.class);
 
-                availabilityRepository.saveAndFlush(availabilityEntity);
+            if (response.getStatusCode().is2xxSuccessful()) {
+                // antes de guardar los datos borra los existentes
+
+                String responseBody = response.getBody();
+                ObjectMapper objectMapper = new ObjectMapper();
+                ApiInventoryResponse apiResponse = objectMapper.readValue(responseBody, ApiInventoryResponse.class);
+                List<itemEntityAPIInventory> items = apiResponse.getItems();
+
+                for (itemEntityAPIInventory i : items) {
+                    AvailabilityEntity availabilityEntity = new AvailabilityEntity();
+                    availabilityEntity.setInventory_item_id(i.getInventoryItemId());
+                    availabilityEntity.setQuantity_units(i.getPrimaryQuantity());
+                    availabilityEntity.setOrganization_id(i.getOrganizationId());
+                    availabilityEntity.setOrganization_code(i.getOrganizationCode());
+
+                    availabilityRepository.save(availabilityEntity);
+                }
+
+                // Actualizar el offset para la próxima solicitud
+                offset += limit;
+                // Verificar si hay más datos
+                hasMore = apiResponse.hasMore;
+
+                //return ResponseEntity.ok(responseBody);
+
+            } else {
+                return ResponseEntity.status(response.getStatusCode()).body("Error en la solicitud: " + response.getStatusCodeValue());
             }
-
-            return ResponseEntity.ok(responseBody);
-
-        } else {
-            return ResponseEntity.status(response.getStatusCode()).body("Error en la solicitud: " + response.getStatusCodeValue());
         }
+        return ResponseEntity.ok("Proceso terminado");
     }
 
 }
