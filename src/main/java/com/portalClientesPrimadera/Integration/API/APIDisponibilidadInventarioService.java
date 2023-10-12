@@ -69,10 +69,11 @@ public class APIDisponibilidadInventarioService {
             for (itemEntityAPIInventory i: items){
                 AvailabilityEntity availabilityEntity = new AvailabilityEntity();
                 availabilityEntity.setInventory_item_id(i.getInventoryItemId());
+                availabilityEntity.setQuantity_units(i.getPrimaryQuantity());
                 availabilityEntity.setOrganization_id(i.getOrganizationId());
                 availabilityEntity.setOrganization_code(i.getOrganizationCode());
 
-                availabilityRepository.save(availabilityEntity);
+                availabilityRepository.saveAndFlush(availabilityEntity);
             }
 
             return ResponseEntity.ok(responseBody);

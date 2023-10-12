@@ -8,7 +8,7 @@ import lombok.*;
 @Builder
 @Data
 @Entity
-@Table(name = "Roles", uniqueConstraints = @UniqueConstraint(columnNames = "CP_rol_id"))
+@Table(name = "Roles", uniqueConstraints = {@UniqueConstraint(columnNames = "CP_rol_id"), @UniqueConstraint(columnNames = "CP_rol_name"), @UniqueConstraint(columnNames = "CP_rol_description")})
 public class RolesEntity {
 
     @Id
