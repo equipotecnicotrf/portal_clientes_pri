@@ -52,9 +52,9 @@ public class ItemsEntity {
     private String Atribute7;
 
      @Column(name = "Atribute8", nullable = false)
-    private Long Atribute8;
+    private Double Atribute8;
 
     @Column(name = "Atribute9", nullable = false)
-    private Long Atribute9;
+    private Double Atribute9;
 
 }
