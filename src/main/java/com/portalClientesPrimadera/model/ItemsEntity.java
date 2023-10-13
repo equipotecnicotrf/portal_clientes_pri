@@ -21,6 +21,9 @@ public class ItemsEntity {
     @Column(name = "item_description", nullable = false)
     private String item_description;
 
+    @Column(name = "item_description_long", nullable = false)
+    private String item_description_long;
+
     @Column(name = "uom_code", nullable = false)
     private String uom_code;
 
@@ -51,5 +54,7 @@ public class ItemsEntity {
      @Column(name = "Atribute8", nullable = false)
     private Long Atribute8;
 
+    @Column(name = "Atribute9", nullable = false)
+    private Long Atribute9;
 
 }

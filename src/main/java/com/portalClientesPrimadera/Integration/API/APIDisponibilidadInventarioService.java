@@ -27,7 +27,7 @@ public class APIDisponibilidadInventarioService {
 
     public ResponseEntity<String> consumirAPIInventario() throws JsonProcessingException {
         // URL de la API
-        String apiUrl = "https://efdg-test.fa.us6.oraclecloud.com//fscmRestApi/resources/11.13.18.05/inventoryOnhandBalances?q=OrganizationCode='PRI04'&q=SubinventoryCode='T_PTP'&q=SummaryLevel='Subinventory'&onlyData=true&orderBy=ItemNumber";
+        String apiUrl = "https://efdg-test.fa.us6.oraclecloud.com//fscmRestApi/resources/11.13.18.05/inventoryOnhandBalances?q=OrganizationCode='PRI04'&q=OrganizationCode='PRI04';SubinventoryCode='T_PTP';SummaryLevel='Subinventory'&onlyData=true&orderBy=ItemNumber";
         // Parametros adicionales
         //String q = "OrganizationCode='PRI04'&q=SubinventoryCode='T_PTP'&q=SummaryLevel='Subinventory'";
         //String onlyData = "true";
