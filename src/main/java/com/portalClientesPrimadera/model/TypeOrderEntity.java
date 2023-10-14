@@ -8,7 +8,7 @@ import lombok.*;
 @Builder
 @Data
 @Entity
-@Table(name = "Type_order", uniqueConstraints = @UniqueConstraint(columnNames = "CP_type_order_id"))
+@Table(name = "Type_order", uniqueConstraints = {@UniqueConstraint(columnNames = "CP_type_order_id"), @UniqueConstraint(columnNames = "CP_type_order_meaning"), @UniqueConstraint(columnNames = "CP_type_order_description")})
 public class TypeOrderEntity {
 
     @Id
