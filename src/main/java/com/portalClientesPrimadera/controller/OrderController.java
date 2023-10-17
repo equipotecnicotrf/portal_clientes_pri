@@ -1,6 +1,7 @@
 package com.portalClientesPrimadera.controller;
 
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,32 +15,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.portalClientesPrimadera.exception.ResourceNotFoundException;
-import com.portalClientesPrimadera.model.PricesEntity;
-import com.portalClientesPrimadera.repository.PricesRepository;
+import com.portalClientesPrimadera.model.OrderEntity;
+import com.portalClientesPrimadera.repository.OrderRepository;
 
 @CrossOrigin(origins =  "http://localhost:5173/")
 @RestController
 @RequestMapping("/api/v1")
-public class PricesController {
+public class OrderController {
+
     @Autowired
-    PricesRepository pricesRepository;
-
-    @GetMapping ("/Prices")
-    public List <PricesEntity> listarPrices(){
-        return pricesRepository.findAll();
+    OrderRepository orderRepository; 
+    
+    @GetMapping ("/Order")
+    public List <OrderEntity> listOrders(){
+        return orderRepository.findAll();
     }
 
-    @PostMapping ("/Prices")
-
-    public PricesEntity savePrice (@RequestBody PricesEntity Prices){
-        return pricesRepository.save(Prices);
+    @PostMapping ("/Order")
+    public OrderEntity saveOrder (@RequestBody OrderEntity Order){
+        return orderRepository.save(Order);
     }
 
-    @GetMapping ("/Prices/{id}")
-    public ResponseEntity <PricesEntity> GetPricesById(@PathVariable Long id){
-        PricesEntity Prices = pricesRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("El precio no se encuentra con el id " + id));
-        return ResponseEntity.ok(Prices);
+    @GetMapping ("/Order/{id}")
+    public ResponseEntity <OrderEntity> getOrderByid(@PathVariable Long id){
+        OrderEntity order = orderRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("La orden no se encuentra con el id "+ id ));
+        return ResponseEntity.ok(order);
     }
-
-
 }
