@@ -30,14 +30,7 @@ public class ItemService {
             itemEntity.setInventory_item_id(Long.parseLong(itemReporte.getInventoryItemId()));
             itemEntity.setItem_number(itemReporte.getItemNumber());
             itemEntity.setItem_description(itemReporte.getItemDescription());
-
-            if (itemReporte.getItemDescriptionLong() != null && !itemReporte.getItemDescriptionLong().isEmpty()) {
-                itemEntity.setItem_description_long(itemReporte.getItemDescriptionLong());
-            } else {
-                // Proporcionar un valor predeterminado si es nulo o vacío
-                itemEntity.setItem_description_long("Valor por default");
-            }
-
+            itemEntity.setItem_description_long(itemReporte.getItemDescriptionLong());
             itemEntity.setItem_description_long(itemReporte.getItemDescriptionLong());
             itemEntity.setUom_code(itemReporte.getUOMCode());
             itemEntity.setUnit_of_measure(itemReporte.getUnitOfMeasure());
