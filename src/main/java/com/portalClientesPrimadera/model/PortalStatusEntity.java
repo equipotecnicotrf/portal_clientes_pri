@@ -18,7 +18,7 @@ public class PortalStatusEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long CP_portal_id;
 
-    @Column(name = "CP_portal_status")
+    @Column(name = "CP_portal_status", nullable = false)
     private String CP_portal_status;
 
 }

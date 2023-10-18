@@ -8,10 +8,13 @@ import lombok.*;
 @Builder
 @Data
 @Entity
-@Table(name = "Availability", uniqueConstraints = @UniqueConstraint(columnNames = "inventory_item_id"))
+@Table(name = "Availability", uniqueConstraints = @UniqueConstraint(columnNames = "CP_id_item_inventory"))
 public class AvailabilityEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long CP_id_item_inventory;
+
     @Column(name = "inventory_item_id", nullable = false)
     private Long inventory_item_id;
 
@@ -21,11 +24,11 @@ public class AvailabilityEntity {
     @Column(name = "organization_code", nullable = false)
     private String organization_code;
 
-    @Column(name = "Quantity_units", nullable = false)
-    private Long Quantity_units;
+    @Column(name = "Quantity_on_hand", nullable = false)
+    private Long Quantity_on_hand;
 
-    @Column(name = "Quantity_packages", nullable = false)
-    private Long Quantity_packages;
+    @Column(name = "Available_to_transact")
+    private Long Available_to_transact;
 
     
 }

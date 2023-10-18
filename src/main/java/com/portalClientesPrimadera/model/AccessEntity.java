@@ -24,7 +24,7 @@ public class AccessEntity {
     @Column(name = "CP_context_id", nullable = false)
     private Long CP_context_id;
 
-    @Column(name = "CP_Access_assign", nullable = false, length =10)
+    @Column(name = "CP_Access_assign", nullable = false)
     private Integer CP_access_assign;
 
 }

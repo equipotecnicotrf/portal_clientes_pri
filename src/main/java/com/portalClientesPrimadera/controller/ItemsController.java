@@ -1,7 +1,7 @@
 package com.portalClientesPrimadera.controller;
 
-
 import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,32 +14,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.portalClientesPrimadera.exception.ResourceNotFoundException;
-import com.portalClientesPrimadera.model.PricesEntity;
-import com.portalClientesPrimadera.repository.PricesRepository;
+import com.portalClientesPrimadera.model.ItemsEntity;
+import com.portalClientesPrimadera.repository.ItemsRepository;
+
+
+
+
+
 
 @CrossOrigin(origins =  "http://localhost:5173/")
 @RestController
 @RequestMapping("/api/v1")
-public class PricesController {
+
+public class ItemsController {
+
     @Autowired
-    PricesRepository pricesRepository;
+    ItemsRepository itemsRepository;
 
-    @GetMapping ("/Prices")
-    public List <PricesEntity> listarPrices(){
-        return pricesRepository.findAll();
+    @GetMapping("/Items")
+    public List <ItemsEntity> listItems(){
+        return itemsRepository.findAll();
+    }
+    
+    @PostMapping("/Items")
+    public ItemsEntity saveItems (@RequestBody ItemsEntity Items){
+        return itemsRepository.save(Items);
     }
 
-    @PostMapping ("/Prices")
-
-    public PricesEntity savePrice (@RequestBody PricesEntity Prices){
-        return pricesRepository.save(Prices);
+    @GetMapping("/Items/{id}")
+    public ResponseEntity <ItemsEntity> getItemsByid(@PathVariable Long id){
+        ItemsEntity items = itemsRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("El item no se encuentra con el id "+ id ));
+        return ResponseEntity.ok(items);
     }
-
-    @GetMapping ("/Prices/{id}")
-    public ResponseEntity <PricesEntity> GetPricesById(@PathVariable Long id){
-        PricesEntity Prices = pricesRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("El precio no se encuentra con el id " + id));
-        return ResponseEntity.ok(Prices);
-    }
-
-
 }
