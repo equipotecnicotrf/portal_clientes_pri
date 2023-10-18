@@ -16,23 +16,18 @@ import java.util.Base64;
 import java.util.List;
 
 @Service
-public class APIDisponibilidadInventarioService {
+public class APIAvaibilityInventoryService {
 
     private final AvailabilityRepository availabilityRepository;
 
     @Autowired
-    public APIDisponibilidadInventarioService(AvailabilityRepository availabilityRepository) {
+    public APIAvaibilityInventoryService(AvailabilityRepository availabilityRepository) {
         this.availabilityRepository = availabilityRepository;
     }
 
     public ResponseEntity<String> consumirAPIInventario() throws JsonProcessingException {
         // URL de la API
-        String apiUrl = "https://efdg-test.fa.us6.oraclecloud.com//fscmRestApi/resources/11.13.18.05/inventoryOnhandBalances?q=OrganizationCode='PRI04'&q=OrganizationCode='PRI04';SubinventoryCode='T_PTP';SummaryLevel='Subinventory'&onlyData=true&orderBy=ItemNumber";
-        // Parametros adicionales
-        //String q = "OrganizationCode='PRI04'&q=SubinventoryCode='T_PTP'&q=SummaryLevel='Subinventory'";
-        //String onlyData = "true";
-        //String orderBy = "ItemNumber";
-        //Ful url para el consumo
+        String apiUrl = "https://efdg-test.fa.us6.oraclecloud.com//fscmRestApi/resources/11.13.18.05/inventoryOnhandBalances?q=OrganizationCode='PRI04';SubinventoryCode='T_PTP';SummaryLevel='Subinventory'&onlyData=true&orderBy=ItemNumber";
 
         // Autorización básica (usuario:contraseña)
         String username = "INTEGRACION_PRI";
@@ -44,8 +39,8 @@ public class APIDisponibilidadInventarioService {
         // Parámetros de la solicitud
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", authHeader);
-        headers.set("REST-Framework-Version", "7");
-        headers.set("Content-Type", "application/json");
+        /*headers.set("REST-Framework-Version", "7");
+        headers.set("Content-Type", "application/json");*/
 
         Integer limit = 500;
         Integer offset = 0;
@@ -59,6 +54,7 @@ public class APIDisponibilidadInventarioService {
             String fullUrl = apiUrl + "&limit=" + limit + "&offset=" + offset;
 
             // Crear una entidad de solicitud con encabezados
+            //HttpEntity<String> entity = new HttpEntity<>(headers);
             HttpEntity<String> entity = new HttpEntity<>(headers);
 
             // Realizar la solicitud GET a la API
@@ -73,9 +69,12 @@ public class APIDisponibilidadInventarioService {
                 List<itemEntityAPIInventory> items = apiResponse.getItems();
 
                 for (itemEntityAPIInventory i : items) {
+
+                    Long availableToTransact = APIPostAvaibilityByItem.getAvailableToTransact(i.getOrganizationCode(), i.getSubinventoryCode(), i.getItemNumber());
                     AvailabilityEntity availabilityEntity = new AvailabilityEntity();
                     availabilityEntity.setInventory_item_id(i.getInventoryItemId());
-                    availabilityEntity.setQuantity_units(i.getPrimaryQuantity());
+                    //availabilityEntity.setQuantity_units(i.getPrimaryQuantity());
+                    availabilityEntity.setQuantity_units(availableToTransact);
                     availabilityEntity.setOrganization_id(i.getOrganizationId());
                     availabilityEntity.setOrganization_code(i.getOrganizationCode());
 

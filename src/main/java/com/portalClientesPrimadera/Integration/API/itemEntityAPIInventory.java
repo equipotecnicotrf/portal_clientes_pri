@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 public class itemEntityAPIInventory {
 
-    public Long ItemNumber;
+    public String ItemNumber;
     public String PrimaryUOMCode;
     public String OrganizationCode;
     public String SummaryLevel;
