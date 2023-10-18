@@ -18,10 +18,10 @@ public class ContextsEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long CP_context_id;
 
-    @Column(name = "CP_context_name")
+    @Column(name = "CP_context_name", nullable = false)
     private String CP_context_name;
 
-    @Column(name = "CP_context_description")
+    @Column(name = "CP_context_description", nullable = false)
     private String CP_context_description;
 
 }
