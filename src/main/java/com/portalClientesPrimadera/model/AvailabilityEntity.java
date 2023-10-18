@@ -24,11 +24,11 @@ public class AvailabilityEntity {
     @Column(name = "organization_code", nullable = false)
     private String organization_code;
 
-    @Column(name = "Quantity_units", nullable = false)
-    private Long Quantity_units;
+    @Column(name = "Quantity_on_hand", nullable = false)
+    private Long Quantity_on_hand;
 
-    @Column(name = "Quantity_packages")
-    private Long Quantity_packages;
+    @Column(name = "Available_to_transact")
+    private Long Available_to_transact;
 
     
 }

@@ -73,8 +73,8 @@ public class APIAvaibilityInventoryService {
                     Long availableToTransact = APIPostAvaibilityByItem.getAvailableToTransact(i.getOrganizationCode(), i.getSubinventoryCode(), i.getItemNumber());
                     AvailabilityEntity availabilityEntity = new AvailabilityEntity();
                     availabilityEntity.setInventory_item_id(i.getInventoryItemId());
-                    //availabilityEntity.setQuantity_units(i.getPrimaryQuantity());
-                    availabilityEntity.setQuantity_units(availableToTransact);
+                    availabilityEntity.setQuantity_on_hand(i.getPrimaryQuantity());
+                    availabilityEntity.setAvailable_to_transact(availableToTransact);
                     availabilityEntity.setOrganization_id(i.getOrganizationId());
                     availabilityEntity.setOrganization_code(i.getOrganizationCode());
 
