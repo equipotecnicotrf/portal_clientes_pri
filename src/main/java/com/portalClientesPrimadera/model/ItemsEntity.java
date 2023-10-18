@@ -21,6 +21,9 @@ public class ItemsEntity {
     @Column(name = "item_description", nullable = false)
     private String item_description;
 
+    @Column(name = "item_description_long", nullable = false)
+    private String item_description_long;
+
     @Column(name = "uom_code", nullable = false)
     private String uom_code;
 
