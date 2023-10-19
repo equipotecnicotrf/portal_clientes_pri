@@ -1,0 +1,226 @@
+{
+  "Line": [
+    {
+      "LineTypeCode": "ORA_BUY",
+      "AllowPriceListUpdateFlag": false,
+      "LineId": 1001,
+      "LineQuantity": {
+        "Value": 1,
+        "UomCode": "zzx"
+      },
+      "AppliedPriceListId": 300000423175589,
+      "LineQuantityUOMCode": "zzx",
+      "InventoryItemId": 100000051443430,
+      "PriceAsOf": "2023-10-19T14:35:19+00:00",
+      "HeaderId": 1,
+      "LineCategoryCode": "ORDER",
+      "PricedOn": "2023-10-19T14:35:19+00:00",
+      "PriceValidFrom": "2023-09-07T10:40:51+00:00",
+      "DefaultCurrencyCode": "COP",
+      "AllowCurrencyOverrideFlag": true,
+      "InventoryOrganizationId": 300000192342222,
+      "PricingStrategyId": 300000200264147,
+      "DefaultPriceListId": 300000423175589
+    }
+  ],
+  "Header": [
+    {
+      "CalculateTaxFlag": false,
+      "PriceAsOf": "2023-10-19T14:35:19+00:00",
+      "PricingSegmentCode": "MACORAC",
+      "HeaderId": 1,
+      "PricedOn": "2023-10-19T14:35:19+00:00",
+      "PricingSegmentExplanation": "The applicable pricing segment for this transaction is Pricing Segment=MACORAC Precedence=100 because Revenue Potential=null Customer Size=null Cost To Serve=CO BOGOTA SURROUNDINGS Customer Value=DISTRIBUTOR Customer Rating=MACORAC                                                      ",
+      "CalculatePricingChargesFlag": true,
+      "CustomerId": 300000005985387,
+      "PricingStrategyExplanation": "The applicable pricing strategy for this transaction is Pricing Strategy=PRI COP NAL MACORAC because Pricing Segment=MACORAC Business Unit=PRI_UNIDAD_NEGOCIO Currency=null",
+      "TransactionOn": "2023-09-07T10:40:51+00:00",
+      "PriceValidFrom": "2023-09-07T10:40:51+00:00",
+      "DefaultCurrencyCode": "COP",
+      "AllowCurrencyOverrideFlag": true,
+      "AppliedCurrencyCode": "COP",
+      "SellingBusinessUnitId": 300000192811845,
+      "TransactionTypeCode": "ORA_SALES_ORDER",
+      "PricingStrategyId": 300000200264147
+    }
+  ],
+  "Charge": [
+    {
+      "RollupFlag": false,
+      "ParentEntityId": 1001,
+      "PrimaryFlag": true,
+      "LineId": 1001,
+      "PricedQuantityUOMCode": "zzx",
+      "ChargeTypeCode": "ORA_SALE",
+      "TaxIncludedFlag": false,
+      "ChargeDefinitionCode": "QP_SALE_PRICE",
+      "PricedQuantity": {
+        "Value": 1,
+        "UomCode": "zzx"
+      },
+      "EstimatedPricedQuantityFlag": false,
+      "ChargeSubtypeCode": "ORA_PRICE",
+      "CurrencyCode": "COP",
+      "ParentEntityCode": "LINE",
+      "EstimatedUnitPriceFlag": false,
+      "PriceTypeCode": "ONE_TIME",
+      "ChargeAppliesTo": "PRICE",
+      "ChargeDefinitionId": 300000000160267,
+      "SequenceNumber": 1,
+      "CanAdjustFlag": true,
+      "ChargeId": 1
+    }
+  ],
+  "PricingServiceParameter": [
+    {
+      "PricingContext": "SALES",
+      "OutputStatus": "SUCCESS"
+    }
+  ],
+  "ChargeComponent": [
+    {
+      "RollupFlag": false,
+      "ExplanationMessageName": "QP_BASE_LIST_PRICE_CHARGE",
+      "HeaderCurrencyExtendedAmount": {
+        "CurrencyCode": "COP",
+        "Value": 339801
+      },
+      "HeaderCurrencyCode": "COP",
+      "Explanation": "Base List Price Applied from PRI COP NAL LISTA PVP",
+      "SourceId": 300000599384652,
+      "HeaderCurrencyUnitPrice": {
+        "CurrencyCode": "COP",
+        "Value": 339800.97
+      },
+      "ExtendedAmount": {
+        "CurrencyCode": "COP",
+        "Value": 339800.97
+      },
+      "SourceTypeCode": "PRICE_LIST_CHARGE",
+      "PercentOfComparisonElement": 1,
+      "CurrencyCode": "COP",
+      "PriceElementCode": "QP_BASE_LIST_PRICE",
+      "UnitPrice": {
+        "CurrencyCode": "COP",
+        "Value": 339800.97
+      },
+      "ChargeComponentId": 1,
+      "SequenceNumber": 1000,
+      "ChargeId": 1
+    },
+    {
+      "RollupFlag": false,
+      "HeaderCurrencyExtendedAmount": {
+        "CurrencyCode": "COP",
+        "Value": 339801
+      },
+      "HeaderCurrencyCode": "COP",
+      "HeaderCurrencyUnitPrice": {
+        "CurrencyCode": "COP",
+        "Value": 339800.97
+      },
+      "TaxIncludedFlag": false,
+      "ExtendedAmount": {
+        "CurrencyCode": "COP",
+        "Value": 339800.97
+      },
+      "PercentOfComparisonElement": 1,
+      "CurrencyCode": "COP",
+      "PriceElementCode": "QP_LIST_PRICE",
+      "UnitPrice": {
+        "CurrencyCode": "COP",
+        "Value": 339800.97
+      },
+      "ChargeComponentId": 2,
+      "PriceElementUsageCode": "LIST_PRICE",
+      "SequenceNumber": 1001,
+      "ChargeId": 1
+    },
+    {
+      "RollupFlag": false,
+      "ExplanationMessageName": "QP_DISCOUNT_LINE_ATTR_ADJ",
+      "HeaderCurrencyExtendedAmount": {
+        "CurrencyCode": "COP",
+        "Value": -152910
+      },
+      "HeaderCurrencyCode": "COP",
+      "Explanation": "Attribute-based discount rule applied because ItemAttribute=PRIMACOR ST TENDENCIA",
+      "SourceId": 300000726669083,
+      "HeaderCurrencyUnitPrice": {
+        "CurrencyCode": "COP",
+        "Value": -152910.4365
+      },
+      "ExtendedAmount": {
+        "CurrencyCode": "COP",
+        "Value": -152910.4365
+      },
+      "SourceTypeCode": "MATRIX_RULE",
+      "PercentOfComparisonElement": -0.45,
+      "CurrencyCode": "COP",
+      "PriceElementCode": "QP_DISCOUNT_LINE_ATTR_ADJ",
+      "UnitPrice": {
+        "CurrencyCode": "COP",
+        "Value": -152910.4365
+      },
+      "ChargeComponentId": 5,
+      "PriceElementUsageCode": "PRICE_ADJUSTMENT",
+      "SequenceNumber": 1004,
+      "ChargeId": 1
+    },
+    {
+      "RollupFlag": false,
+      "HeaderCurrencyExtendedAmount": {
+        "CurrencyCode": "COP",
+        "Value": 186891
+      },
+      "HeaderCurrencyCode": "COP",
+      "HeaderCurrencyUnitPrice": {
+        "CurrencyCode": "COP",
+        "Value": 186890.5335
+      },
+      "TaxIncludedFlag": false,
+      "ExtendedAmount": {
+        "CurrencyCode": "COP",
+        "Value": 186890.5335
+      },
+      "PercentOfComparisonElement": 0.55,
+      "CurrencyCode": "COP",
+      "PriceElementCode": "QP_NET_PRICE",
+      "UnitPrice": {
+        "CurrencyCode": "COP",
+        "Value": 186890.5335
+      },
+      "ChargeComponentId": 6,
+      "PriceElementUsageCode": "NET_PRICE",
+      "SequenceNumber": 1005,
+      "ChargeId": 1
+    },
+    {
+      "RollupFlag": false,
+      "HeaderCurrencyExtendedAmount": {
+        "CurrencyCode": "COP",
+        "Value": 186891
+      },
+      "HeaderCurrencyCode": "COP",
+      "HeaderCurrencyUnitPrice": {
+        "CurrencyCode": "COP",
+        "Value": 186890.5335
+      },
+      "TaxIncludedFlag": false,
+      "ExtendedAmount": {
+        "CurrencyCode": "COP",
+        "Value": 186890.5335
+      },
+      "PercentOfComparisonElement": 0.55,
+      "CurrencyCode": "COP",
+      "PriceElementCode": "QP_MARGIN",
+      "UnitPrice": {
+        "CurrencyCode": "COP",
+        "Value": 186890.5335
+      },
+      "ChargeComponentId": 7,
+      "SequenceNumber": 1006,
+      "ChargeId": 1
+    }
+  ]
+}
