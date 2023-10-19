@@ -49,4 +49,9 @@ public class ItemsController {
     public List<ItemsEntity> getAllDisponible(){
         return itemsRepository.findByDisponibilidad();
     }
+
+    @GetMapping("/Items/itemshazpedido")
+    public List<ItemsEntity> getAllHazPedido(){
+        return itemsRepository.FinbyHazPedido();
+    }
 }
