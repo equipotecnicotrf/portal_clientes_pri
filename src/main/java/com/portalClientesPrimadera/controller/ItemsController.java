@@ -22,7 +22,6 @@ import com.portalClientesPrimadera.repository.ItemsRepository;
 
 
 
-@CrossOrigin(origins =  "http://localhost:5173/")
 @RestController
 @RequestMapping("/api/v1")
 
@@ -45,5 +44,9 @@ public class ItemsController {
     public ResponseEntity <ItemsEntity> getItemsByid(@PathVariable Long id){
         ItemsEntity items = itemsRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("El item no se encuentra con el id "+ id ));
         return ResponseEntity.ok(items);
+    }
+    @GetMapping("/Items/itemscondisponibilidad")
+    public List<ItemsEntity> getAllDisponible(){
+        return itemsRepository.findByDisponibilidad();
     }
 }

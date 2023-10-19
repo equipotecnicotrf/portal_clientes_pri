@@ -18,7 +18,6 @@ import com.portalClientesPrimadera.exception.ResourceNotFoundException;
 import com.portalClientesPrimadera.model.OrderEntity;
 import com.portalClientesPrimadera.repository.OrderRepository;
 
-@CrossOrigin(origins =  "http://localhost:5173/")
 @RestController
 @RequestMapping("/api/v1")
 public class OrderController {
