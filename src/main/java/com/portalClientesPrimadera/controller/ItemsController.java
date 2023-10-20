@@ -1,5 +1,6 @@
 package com.portalClientesPrimadera.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -46,12 +47,46 @@ public class ItemsController {
         return ResponseEntity.ok(items);
     }
     @GetMapping("/Items/itemscondisponibilidad")
-    public List<ItemsEntity> getAllDisponible(){
+    public List<ArrayList> getAllDisponible(){
         return itemsRepository.findByDisponibilidad();
     }
 
     @GetMapping("/Items/itemshazpedido")
     public List<ItemsEntity> getAllHazPedido(){
         return itemsRepository.FinbyHazPedido();
+    }
+
+    @GetMapping("/Items/itemsLinea")
+    public List<String> getLinea(){
+        return itemsRepository.findDistinctAttribute1();
+    }
+
+    @GetMapping("/Items/itemsAcabado")
+    public List<String> getAcabado(){
+        return itemsRepository.findDistinctAttribute2();
+    }
+
+    @GetMapping("/Items/itemsCaras")
+    public List<String> getCaras(){
+        return itemsRepository.findDistinctAttribute3();
+    }
+
+    @GetMapping("/Items/itemsDiseno")
+    public List<String> getDiseno(){
+        return itemsRepository.findDistinctAttribute4();
+    }
+
+    @GetMapping("/Items/itemsSustrato")
+    public List<String> getSustrato(){
+        return itemsRepository.findDistinctAttribute5();
+    }
+
+    @GetMapping("/Items/itemsEspesor")
+    public List<Integer> getEspesor(){
+        return itemsRepository.findDistinctAttribute6();
+    }
+    @GetMapping("/Items/itemsFormato")
+    public List<String> getFormato(){
+        return itemsRepository.findDistinctAttribute7();
     }
 }
