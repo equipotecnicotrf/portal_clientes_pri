@@ -1,5 +1,6 @@
 package com.portalClientesPrimadera.controller;
 
+import java.util.Base64;
 import java.util.List;
 
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.portalClientesPrimadera.exception.ResourceNotFoundException;
 import com.portalClientesPrimadera.model.ItemsEntity;
+import com.portalClientesPrimadera.model.UsersEntity;
 import com.portalClientesPrimadera.repository.ItemsRepository;
 
 
@@ -22,7 +24,6 @@ import com.portalClientesPrimadera.repository.ItemsRepository;
 
 
 
-@CrossOrigin(origins =  "http://localhost:5173/")
 @RestController
 @RequestMapping("/api/v1")
 
@@ -46,4 +47,15 @@ public class ItemsController {
         ItemsEntity items = itemsRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("El item no se encuentra con el id "+ id ));
         return ResponseEntity.ok(items);
     }
+    @GetMapping("/Items/itemscondisponibilidad")
+    public List<ItemsEntity> getAllDisponible(){
+        return itemsRepository.findByDisponibilidad();
+    }
+
+    @GetMapping("/Items/itemshazpedido")
+    public List<ItemsEntity> getAllHazPedido(){
+        return itemsRepository.FinbyHazPedido();
+    }
+
+    
 }

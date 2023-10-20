@@ -77,18 +77,19 @@ public class UsersController {
         return ResponseEntity.ok(users);
     }
 
-
     //Actualizar contraseña
+
     @PutMapping("/Users/{id}/update-password")
     public ResponseEntity<UsersEntity> actualizarPassword(@PathVariable Long id,@RequestBody UsersEntity newPassword) {
         UsersEntity users = usersRepository.findById(id)
-        .orElseThrow(() -> new ResourceNotFoundException("El usuario con este ID no existe : " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("El usuario con este ID no existe : " + id));
         String encodepass = Base64.getEncoder().encodeToString(newPassword.getCP_Password().getBytes());
         users.setCP_Password(encodepass);
         UsersEntity userActualizado = usersRepository.save(users);
         return ResponseEntity.ok(userActualizado);
 
     }
+
+
+
 }
-
-

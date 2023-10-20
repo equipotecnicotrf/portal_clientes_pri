@@ -12,25 +12,15 @@ import lombok.Setter;
 public class DireccionReporte {
 
     private String partySiteUse;
-
     private String siteUseId;
-
     private String codVendedor;
-
     private String nameVendedor;
-
     private String siteUseCode;
-
     private String address1;
-
     private String city;
-
     private String state;
-
     private String country;
-
     private String custAccountId;
-
     private String partySiteId;
 
 }
