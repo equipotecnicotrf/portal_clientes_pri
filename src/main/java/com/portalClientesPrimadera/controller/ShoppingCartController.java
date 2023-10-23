@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,6 +40,8 @@ public class ShoppingCartController {
         ShoppingCartEntity shoppingCart = shoppinCartRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("El carrito de compra no se encontro con el id "+ id));
         return ResponseEntity.ok(shoppingCart);
     }
+
+
 
     
     

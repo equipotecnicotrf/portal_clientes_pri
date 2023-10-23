@@ -7,5 +7,5 @@ import com.portalClientesPrimadera.model.ShoppingCartEntity;
 
 @Repository
 public interface ShoppinCartRepository extends JpaRepository <ShoppingCartEntity, Long> {
-    
+
 }
