@@ -1,6 +1,6 @@
 package com.portalClientesPrimadera.controller;
 
-import com.portalClientesPrimadera.Integration.soap.EjecutarReporte4_4;
+import com.portalClientesPrimadera.Integration.soap.EjecutarReporteMaestraClientes;
 import com.portalClientesPrimadera.model.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,7 @@ import java.util.List;
 public class ReporteClientesController {
 
     @Autowired
-    private EjecutarReporte4_4 ejecutarReporte44;
+    private EjecutarReporteMaestraClientes ejecutarReporte44;
 
     @GetMapping("/reporteClientes")
     public List<Cliente> obtenClientes() {

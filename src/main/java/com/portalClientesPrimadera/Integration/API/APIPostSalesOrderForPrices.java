@@ -113,69 +113,59 @@ public class APIPostSalesOrderForPrices {
 
                 JSONObject jsonResponse = new JSONObject(response.toString());
                 // Accede a la matriz ChargeComponent
+
+                //if (jsonResponse.has("ChargeComponent")) {
                 JSONArray chargeComponents = jsonResponse.getJSONArray("ChargeComponent");
 
-                header = jsonResponse.getJSONArray("Header").getJSONObject(0);
-                long customerId = header.getLong("CustomerId");
+                if (chargeComponents.length() > 0) {
 
-                // Accede al objeto "Line" desde el inicio de la respuesta
-                line = jsonResponse.getJSONArray("Line").getJSONObject(0);
-                long inventoryItemId = line.getLong("InventoryItemId");
-                long InventoryOrganizationId = line.getLong("InventoryOrganizationId");
+                    header = jsonResponse.getJSONArray("Header").getJSONObject(0);
+                    long customerId = header.getLong("CustomerId");
 
-                for (int i = 0; i < chargeComponents.length(); i++) {
-                    JSONObject chargeComponent = chargeComponents.getJSONObject(i);
-                    //int chargeComponentId = chargeComponent.getInt("ChargeComponentId");
-                    if (chargeComponent.has("PriceElementCode") && chargeComponent.has("PriceElementUsageCode")) {
-                        String PriceElementCode = chargeComponent.optString("PriceElementCode");
-                        String PriceElementUsageCode = chargeComponent.optString("PriceElementUsageCode");
+                    // Accede al objeto "Line" desde el inicio de la respuesta
+                    line = jsonResponse.getJSONArray("Line").getJSONObject(0);
+                    long inventoryItemId = line.getLong("InventoryItemId");
+                    long InventoryOrganizationId = line.getLong("InventoryOrganizationId");
 
-                        if ("QP_NET_PRICE".equals(PriceElementCode) && "NET_PRICE".equals(PriceElementUsageCode)) {
-                            // Accede al valor de ExtendedAmount dentro del objeto encontrado
-                            JSONObject unitPrice = chargeComponent.optJSONObject("UnitPrice");
+                    for (int i = 0; i < chargeComponents.length(); i++) {
+                        JSONObject chargeComponent = chargeComponents.getJSONObject(i);
+                        //int chargeComponentId = chargeComponent.getInt("ChargeComponentId");
+                        if (chargeComponent.has("PriceElementCode") && chargeComponent.has("PriceElementUsageCode")) {
+                            String PriceElementCode = chargeComponent.optString("PriceElementCode");
+                            String PriceElementUsageCode = chargeComponent.optString("PriceElementUsageCode");
 
-                            if (unitPrice != null) { // Verifica si el objeto unitPrice es nulo
-                                double Value = unitPrice.optDouble("Value");
-                                String currencyCode = unitPrice.optString("CurrencyCode");
+                            if ("QP_NET_PRICE".equals(PriceElementCode) && "NET_PRICE".equals(PriceElementUsageCode)) {
+                                // Accede al valor de ExtendedAmount dentro del objeto encontrado
+                                JSONObject unitPrice = chargeComponent.optJSONObject("UnitPrice");
 
-                                JSONObject result = new JSONObject();
-                                result.put("CustomerId", customerId);
-                                result.put("InventoryItemId", inventoryItemId);
-                                result.put("InventoryOrganizationId", InventoryOrganizationId);
-                                result.put("CurrencyCode", currencyCode);
-                                result.put("Value", Value);
+                                if (unitPrice != null) { // Verifica si el objeto unitPrice es nulo
+                                    double Value = unitPrice.optDouble("Value");
+                                    String currencyCode = unitPrice.optString("CurrencyCode");
 
-                                // Agregar el objeto 'result' a 'response'
-                                return result;
+                                    JSONObject result = new JSONObject();
+                                    result.put("CustomerId", customerId);
+                                    result.put("InventoryItemId", inventoryItemId);
+                                    result.put("InventoryOrganizationId", InventoryOrganizationId);
+                                    result.put("CurrencyCode", currencyCode);
+                                    result.put("Value", Value);
+
+                                    // Agregar el objeto 'result' a 'response'
+                                    return result;
+                                }
                             }
                         }
                     }
+                }
+                 else {
+                    // Devolver un valor predeterminado o manejarlo según tus necesidades
+                    return null;
                 }
             }             // Cerrar la conexión
             connection.disconnect();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new JSONObject();
-    }
-
-    public static void main(String[] args) throws JSONException {
-        // Llamar a la función de la API y obtener la respuesta
-        JSONObject result = postSalesOrderForPrices(300000011736842L, 300000218722667L);
-
-        // Puedes usar estos valores como desees en el método main
-        Long customerId = result.optLong("CustomerId");
-        Long inventoryItemId = result.optLong("InventoryItemId");
-        Long inventoryOrganizationId = result.optLong("InventoryOrganizationId");
-        String currencyCode = result.optString("CurrencyCode");
-        Double extendedAmount = result.optDouble("Value");
-
-        System.out.println("CustomerId: " + customerId);
-        System.out.println("InventoryItemId: " + inventoryItemId);
-        System.out.println("InventoryOrganizationId: " + inventoryOrganizationId);
-        System.out.println("CurrencyCode: " + currencyCode);
-        System.out.println("Value: " + extendedAmount);
-
+        return null;
     }
 
 }
