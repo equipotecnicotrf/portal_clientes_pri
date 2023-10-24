@@ -9,6 +9,16 @@
             "projectName": "portalclientesservice",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-APIPostCreatePurchaseOrder<portalclientesservice>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.portalClientesPrimadera.Integration.API.APIPostCreatePurchaseOrder",
+            "projectName": "portalclientesservice",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
