@@ -5,13 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.portalClientesPrimadera.exception.ResourceNotFoundException;
 import com.portalClientesPrimadera.model.ShoppingCartEntity;
@@ -19,7 +13,6 @@ import com.portalClientesPrimadera.repository.ShoppinCartRepository;
 
 
 
-@CrossOrigin(origins =  "http://localhost:5173/")
 @RestController
 @RequestMapping("/api/v1")
 public class ShoppingCartController {
@@ -42,7 +35,17 @@ public class ShoppingCartController {
         ShoppingCartEntity shoppingCart = shoppinCartRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("El carrito de compra no se encontro con el id "+ id));
         return ResponseEntity.ok(shoppingCart);
     }
+    @GetMapping("/ShoppingCart/users")
+    public List<ShoppingCartEntity> getShoppingCartByCustAccountIdAndCpUserId(
+            @RequestParam(name = "Cust_account_id") Long custAccountId,
+            @RequestParam(name = "CP_user_id") Long CP_user_id
+    ) {
+        return shoppinCartRepository.findByCustAccountIdAndCpUserId(custAccountId, CP_user_id);
+    }
 
-    
-    
+
+
+
+
+
 }
