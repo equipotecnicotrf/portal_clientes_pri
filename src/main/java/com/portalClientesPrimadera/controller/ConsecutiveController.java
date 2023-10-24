@@ -29,9 +29,10 @@ public class ConsecutiveController {
         return consecutiveRepository.findAll();
     }
 
-      @PostMapping ("/Consecutive")
+    @PostMapping ("/Consecutive")
     public ConsecutiveEntity saveConsecutive (@RequestBody ConsecutiveEntity consecutive){
         return consecutiveRepository.save(consecutive);
+    
     }
 
     @GetMapping ("/Consecutive/{id}")
