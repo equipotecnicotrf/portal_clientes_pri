@@ -4,6 +4,7 @@ package com.portalClientesPrimadera.controller;
 
 import java.util.List;
 
+import com.portalClientesPrimadera.model.ShoppingCartLinesEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -39,5 +40,10 @@ public class OrderController {
     public ResponseEntity <OrderEntity> getOrderByid(@PathVariable Long id){
         OrderEntity order = orderRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("La orden no se encuentra con el id "+ id ));
         return ResponseEntity.ok(order);
+    }
+
+    @GetMapping("/Order/cartid/{cartid}")
+    public List<OrderEntity> getOrderBycartid(@PathVariable Long cartid) {
+        return orderRepository.findByordercpcartid(cartid);
     }
 }
