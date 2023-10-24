@@ -20,7 +20,6 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
-
 import static com.portalClientesPrimadera.Integration.API.APIPostSalesOrderForPrices.postSalesOrderForPrices;
 
 @RestController

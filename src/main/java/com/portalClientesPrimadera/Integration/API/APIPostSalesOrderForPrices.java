@@ -157,7 +157,7 @@ public class APIPostSalesOrderForPrices {
                     }
                 }
                  else {
-                    // Devolver un valor predeterminado o manejarlo según tus necesidades
+                    // Devolver un valor predeterminado
                     return null;
                 }
             }             // Cerrar la conexión
