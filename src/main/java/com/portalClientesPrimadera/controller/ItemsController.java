@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.portalClientesPrimadera.exception.ResourceNotFoundException;
 import com.portalClientesPrimadera.model.ItemsEntity;
+import com.portalClientesPrimadera.model.UsersEntity;
 import com.portalClientesPrimadera.repository.ItemsRepository;
 
 

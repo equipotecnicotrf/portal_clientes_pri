@@ -1,6 +1,8 @@
 package com.portalClientesPrimadera.controller;
 
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.portalClientesPrimadera.exception.ResourceNotFoundException;
+import com.portalClientesPrimadera.model.AddressesEntity;
+import com.portalClientesPrimadera.model.ItemsEntity;
 import com.portalClientesPrimadera.model.ShoppingCartEntity;
 import com.portalClientesPrimadera.repository.ShoppinCartRepository;
 

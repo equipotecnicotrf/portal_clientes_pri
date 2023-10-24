@@ -78,7 +78,6 @@ public class UsersController {
     }
 
     //Actualizar contraseña
-
     @PutMapping("/Users/{id}/update-password")
     public ResponseEntity<UsersEntity> actualizarPassword(@PathVariable Long id,@RequestBody UsersEntity newPassword) {
         UsersEntity users = usersRepository.findById(id)
