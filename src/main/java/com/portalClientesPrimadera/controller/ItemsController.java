@@ -6,13 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.portalClientesPrimadera.exception.ResourceNotFoundException;
 import com.portalClientesPrimadera.model.ItemsEntity;
@@ -47,13 +41,13 @@ public class ItemsController {
         return ResponseEntity.ok(items);
     }
     @GetMapping("/Items/itemscondisponibilidad")
-    public List<ArrayList> getAllDisponible(){
-        return itemsRepository.findByDisponibilidad();
+    public List<ArrayList> getAllDisponible(@RequestParam(name = "Cust_account_id") Long Cust_account_id) {
+        return itemsRepository.findByDisponibilidad(Cust_account_id);
     }
 
     @GetMapping("/Items/itemshazpedido")
-    public List<ItemsEntity> getAllHazPedido(){
-        return itemsRepository.FinbyHazPedido();
+    public List<ArrayList> getAllHazPedido(@RequestParam(name = "Cust_account_id") Long Cust_account_id){
+        return itemsRepository.FinbyHazPedido(Cust_account_id);
     }
 
     @GetMapping("/Items/itemsLinea")
