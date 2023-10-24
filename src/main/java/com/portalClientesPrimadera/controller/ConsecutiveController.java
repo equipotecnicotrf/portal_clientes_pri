@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,13 +25,14 @@ public class ConsecutiveController {
     private ConsecutiveRepository consecutiveRepository;
 
      @GetMapping("/Consecutive")
-    public List<ConsecutiveEntity> ListarUsers() {
+    public List<ConsecutiveEntity> ListarConsecutivos() {
         return consecutiveRepository.findAll();
     }
 
-      @PostMapping ("/Consecutive")
-    public ConsecutiveEntity saveShoppingCart (@RequestBody ConsecutiveEntity consecutive){
+    @PostMapping ("/Consecutive")
+    public ConsecutiveEntity saveConsecutive (@RequestBody ConsecutiveEntity consecutive){
         return consecutiveRepository.save(consecutive);
+    
     }
 
     @GetMapping ("/Consecutive/{id}")
@@ -39,4 +41,18 @@ public class ConsecutiveController {
         return ResponseEntity.ok(Consecutives);
     }
 
+    @PutMapping("/Consecutive/{id}")
+    public ResponseEntity<ConsecutiveEntity> actualizarConsecutive(@PathVariable Long id,
+            @RequestBody ConsecutiveEntity ConsecutiveRequest) {
+        ConsecutiveEntity Consecutive = consecutiveRepository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("El usuario con este ID no existe : " + id));
+        Consecutive.setCP_Consecutive_code(ConsecutiveRequest.getCP_Consecutive_code());
+        Consecutive.setCP_Consecutive_num(ConsecutiveRequest.getCP_Consecutive_num());
+        Consecutive.setCP_Consecutive_date_start(ConsecutiveRequest.getCP_Consecutive_date_start());
+        Consecutive.setCP_Consecutive_date_end(ConsecutiveRequest.getCP_Consecutive_date_end());
+
+        ConsecutiveEntity ConscutivoActualizado = consecutiveRepository.save(Consecutive);
+        return ResponseEntity.ok(ConscutivoActualizado);
+
+}
 }
