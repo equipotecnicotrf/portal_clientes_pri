@@ -1,5 +1,6 @@
 package com.portalClientesPrimadera.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.portalClientesPrimadera.model.ShoppingCartEntity;
@@ -39,4 +40,9 @@ public class ShoppingCartLinescontroller {
         return shoppingCartLinesRepository.findBycpcartid(cartid);
     }
 
-}
+    @GetMapping("/ShoppingCartLines/items/{cartid}")
+    public List<ArrayList> getshoppingcartlinesitemsbycartid(@PathVariable Long cartid) {
+        return shoppingCartLinesRepository.findByitemscpcartid(cartid);
+    }
+
+    }
