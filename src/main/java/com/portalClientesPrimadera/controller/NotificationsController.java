@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,5 +41,17 @@ public class NotificationsController {
                 .orElseThrow(() -> new ResourceNotFoundException("La notificacion por este id no existe" + id));
         return ResponseEntity.ok(notification);
     }
+
+    @PutMapping("/Notifications/{id}")
+    public ResponseEntity<NotificationsEntity> actualizarNotiPorId(@PathVariable Long id,
+            @RequestBody NotificationsEntity notiRequest) {
+        NotificationsEntity Notifications = notificationsRepository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("El usuario con este ID no existe : " + id));
+        Notifications.setCP_Notification_name(notiRequest.getCP_Notification_name());
+        Notifications.setCP_Notification_message(notiRequest.getCP_Notification_message());
+
+        NotificationsEntity NotiActualizada = notificationsRepository.save(Notifications);
+        return ResponseEntity.ok(NotiActualizada);
     
+}
 }

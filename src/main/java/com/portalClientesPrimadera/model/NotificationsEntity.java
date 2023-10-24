@@ -15,14 +15,14 @@ public class NotificationsEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long CP_Notification_id;
 
-    @Column(name = "CP_Notifications_context", nullable = false)
-    private String CP_Notifications_context;
+    @Column(name = "CP_Notification_context", nullable = false)
+    private String CP_Notification_context;
 
-    @Column(name = "CP_Notifications_name", nullable = false)
-    private String CP_Notifications_name;
+    @Column(name = "CP_Notification_name", nullable = false)
+    private String CP_Notification_name;
 
-    @Column(name = "CP_Notifications_message", nullable = false)
-    private String CP_Notifications_message;
+    @Column(name = "CP_Notification_message", nullable = false)
+    private String CP_Notification_message;
 
     
 }
