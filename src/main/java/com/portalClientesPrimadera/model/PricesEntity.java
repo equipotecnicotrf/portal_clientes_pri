@@ -27,9 +27,9 @@ public class PricesEntity {
     private String currency_code;
 
     @Column(name = "unit_price", nullable = false)
-    private Long unit_price;
+    private Double unit_price;
 
     @Column(name = "CP_IVA_id", nullable = false)
-    private String CP_IVA_id;
+    private Long CP_IVA_id;
 
 }

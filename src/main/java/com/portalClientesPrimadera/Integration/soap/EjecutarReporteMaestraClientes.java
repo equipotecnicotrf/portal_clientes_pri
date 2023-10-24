@@ -17,7 +17,7 @@ import java.util.Base64;
 import java.util.List;
 
 @Component
-public class EjecutarReporte4_4 {
+public class EjecutarReporteMaestraClientes {
 
     public List<Cliente> ReporteClientes(String path, String usuarioERP, String ClaveERP) {
         List<Cliente> listaClientes = new ArrayList<Cliente>();
