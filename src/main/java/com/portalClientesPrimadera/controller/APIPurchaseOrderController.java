@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1")
-public class APIOrderController {
+public class APIPurchaseOrderController {
 
     private final PurchaseOrderService purchaseOrderService;
 
     @Autowired
-    public APIOrderController(PurchaseOrderService purchaseOrderService) {
+    public APIPurchaseOrderController(PurchaseOrderService purchaseOrderService) {
         this.purchaseOrderService = purchaseOrderService;
     }
 
