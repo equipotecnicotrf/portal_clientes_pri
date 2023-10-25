@@ -17,7 +17,6 @@ import com.portalClientesPrimadera.exception.ResourceNotFoundException;
 import com.portalClientesPrimadera.model.PricesEntity;
 import com.portalClientesPrimadera.repository.PricesRepository;
 
-@CrossOrigin(origins =  "http://localhost:5173/")
 @RestController
 @RequestMapping("/api/v1")
 public class PricesController {
