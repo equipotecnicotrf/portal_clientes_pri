@@ -20,7 +20,7 @@ public class ReporteItemInventarioController {
     @Autowired
     private ItemService itemService;
 
-    @GetMapping("/reporteItemInventario")
+    @GetMapping("/ ")
     public List<ItemReporte> listarItemsInventario() {
         List<ItemReporte> items =
                 ejecutarReporteItemInventario.ReporteItemsInventario(

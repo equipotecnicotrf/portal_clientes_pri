@@ -48,13 +48,13 @@ public class APIPricesController {
 
         //Para controlar los ciclos de users
         for (UsersEntity user : users) {
-            if (count == 1){
-                break;
-            }
+            //if (count == 1){               //activar si solo quier actualizar un usuario
+           //     break;
+           // }
             count++;
             //para controlar los ciclos de items
             for (ItemsEntity item : items) {
-                //if (count2 == 1000){
+                //if (count2 == 1000){      //activar si solo quier una cantidad especifica de items
                    // break;
                 //}
                 count2++;
