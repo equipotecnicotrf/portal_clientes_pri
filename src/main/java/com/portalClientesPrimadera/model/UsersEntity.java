@@ -45,4 +45,12 @@ public class UsersEntity {
     @Column(name = "party_id", nullable = false)
     private Long party_id;
 
+    @Column(name = "payment_terms", nullable = false)
+    private String payment_terms;
+
+    @Column(name = "transactional_currency_code", nullable = false)
+    private String transactional_currency_code;
+
+
+
 }

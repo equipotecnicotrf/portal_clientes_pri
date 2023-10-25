@@ -3,6 +3,7 @@ package com.portalClientesPrimadera.Integration.API;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +33,7 @@ public class APIPostCreatePurchaseOrderV2 {
         List<PurchaseOrderRequest.LineItem> lineItems = request.getLineItems();
 
         //Variable temporal para el consecutivo
-        String consecutivo = "PCP012";
+        String consecutivo = "PCP013";
         //Variable para poenr la hora
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SS");
         String currentDate = sdf.format(new Date());
@@ -94,7 +95,8 @@ public class APIPostCreatePurchaseOrderV2 {
                 line.put("OrderedQuantity", lineItem.getOrderedQuantity());
                 line.put("OrderedUOM", "UN");
                 linesArray.put(line);
-
+                System.out.println("ProductNumber : " + lineItem.getProductNumber());
+                System.out.println("OrderedQuantity : " + lineItem.getOrderedQuantity());
                 variableParaLineasDePedido = variableParaLineasDePedido + 1;
             }
 
@@ -159,8 +161,14 @@ public class APIPostCreatePurchaseOrderV2 {
 
         }catch (Exception e) {
             e.printStackTrace();
+            JSONObject errorResponse = new JSONObject();
+            try {
+                errorResponse.put("message", "Error en el servidor.");
+            } catch (JSONException ex) {
+                throw new RuntimeException(ex);
+            }
+            return errorResponse;
         }
-        return null;
     }
 
     public static void main(String[] args) {

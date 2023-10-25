@@ -8,6 +8,4 @@ import com.portalClientesPrimadera.model.OrderEntity;
 @Repository
 public interface OrderRepository extends JpaRepository <OrderEntity, Long>{
 
-
-    
 }
