@@ -17,6 +17,7 @@ public class ItemService {
     private ItemsRepository itemsRepository;
 
     public void guardarItems(List<ItemReporte> itemReportes){
+        itemsRepository.deleteAll();
         List<ItemsEntity> itemsEntities = convertirAEntities(itemReportes);
         itemsRepository.saveAll(itemsEntities);
     }

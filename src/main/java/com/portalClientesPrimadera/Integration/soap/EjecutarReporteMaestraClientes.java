@@ -130,9 +130,11 @@ public class EjecutarReporteMaestraClientes {
                             String accountName = g1Element.getElementsByTagName("ACCOUNT_NAME").item(0).getTextContent();
                             String custAccountId = g1Element.getElementsByTagName("HZ_CUST_ACCOUNT_ID").item(0).getTextContent();
                             String partyId = g1Element.getElementsByTagName("PARTY_ID").item(0).getTextContent();
+                            String paymentTerms = g1Element.getElementsByTagName("PAYMENT_TERMS").item(0).getTextContent();
+                            String transactionalCurrencyCode = g1Element.getElementsByTagName("TRANSACTIONAL_CURRENCY_CODE").item(0).getTextContent();
 
                             // Crear un objeto Cliente y agregarlo a la lista
-                            Cliente cliente = new Cliente (accountName, custAccountId, partyId);
+                            Cliente cliente = new Cliente (accountName, custAccountId, partyId, paymentTerms, transactionalCurrencyCode);
                             clientes.add(cliente);
                         }
 
