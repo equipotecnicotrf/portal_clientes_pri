@@ -40,14 +40,14 @@ public class APIPricesController {
 
     @GetMapping("/generatePrices")
     public IVAEntity generatePrices() throws JSONException {
-        List<UsersEntity> users = usersRepository.findAll();
-        List<ItemsEntity> items = itemsRepository.findAll();
+        List<Long> users = usersRepository.findDistinctpartyid();
+        List<ItemsEntity> items = itemsRepository.findByItemsPrices();
 
         int count = 0;//para ciclos de users
         int count2 = 0;//para ciclos de items
 
         //Para controlar los ciclos de users
-        for (UsersEntity user : users) {
+        for (Long user : users) {
             //if (count == 1){               //activar si solo quier actualizar un usuario
            //     break;
            // }
@@ -58,7 +58,7 @@ public class APIPricesController {
                    // break;
                 //}
                 count2++;
-                JSONObject result = postSalesOrderForPrices(user.getParty_id(), item.getInventory_item_id());
+                JSONObject result = postSalesOrderForPrices(user, item.getInventory_item_id());
 
                 if (result != null) {
                     //if (result.has("chargeComponent")) {
@@ -68,7 +68,7 @@ public class APIPricesController {
                     // Verificar si chargeComponents no está vacío
                     //if (chargeComponents.length() > 0) {
                     PricesEntity priceEntity = new PricesEntity();
-                    priceEntity.setCust_account_id(user.getParty_id());
+                    priceEntity.setCust_account_id(user);
                     priceEntity.setInventory_item_id(item.getInventory_item_id());
                     priceEntity.setOrganization_id(result.optLong("InventoryOrganizationId"));
                     priceEntity.setCurrency_code(result.optString("CurrencyCode"));
