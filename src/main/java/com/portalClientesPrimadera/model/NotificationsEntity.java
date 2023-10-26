@@ -21,7 +21,7 @@ public class NotificationsEntity {
     @Column(name = "CP_Notification_name", nullable = false)
     private String CP_Notification_name;
 
-    @Column(name = "CP_Notification_message", nullable = false)
+    @Column(name = "CP_Notification_message", nullable = false, length = 1000)
     private String CP_Notification_message;
 
     

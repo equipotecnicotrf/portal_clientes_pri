@@ -1,5 +1,6 @@
 package com.portalClientesPrimadera.repository;
 
+import com.portalClientesPrimadera.model.ShoppingCartEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -41,5 +42,9 @@ public interface ItemsRepository extends JpaRepository <ItemsEntity,Long>{
 
     @Query(value = "SELECT i FROM ItemsEntity i WHERE i.Atribute9 <> 0")
     public List<ItemsEntity> findByItemsPrices();
+
+
+
+
 
 }

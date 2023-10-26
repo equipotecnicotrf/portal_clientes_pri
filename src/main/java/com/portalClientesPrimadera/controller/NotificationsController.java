@@ -1,16 +1,11 @@
 package com.portalClientesPrimadera.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.portalClientesPrimadera.exception.ResourceNotFoundException;
 import com.portalClientesPrimadera.model.AddressesEntity;
@@ -52,6 +47,10 @@ public class NotificationsController {
 
         NotificationsEntity NotiActualizada = notificationsRepository.save(Notifications);
         return ResponseEntity.ok(NotiActualizada);
-    
-}
+    }
+
+    @GetMapping("/Notifications/context")
+    public List<NotificationsEntity> getAllDisponible(@RequestParam(name = "CP_Notification_context") String CP_Notification_context) {
+        return notificationsRepository.finbyCPNotificationcontext(CP_Notification_context);
+    }
 }
