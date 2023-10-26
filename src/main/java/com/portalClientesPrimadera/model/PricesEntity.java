@@ -29,7 +29,7 @@ public class PricesEntity {
     @Column(name = "unit_price", nullable = false)
     private Double unit_price;
 
-    @Column(name = "CP_IVA_id", nullable = false)
-    private Long CP_IVA_id;
+    //@Column(name = "CP_IVA_id", nullable = false)
+    //private Long CP_IVA_id;
 
 }

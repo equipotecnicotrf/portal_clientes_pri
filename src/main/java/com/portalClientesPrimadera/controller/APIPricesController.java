@@ -35,22 +35,21 @@ public class APIPricesController {
     @Autowired
     private PricesRepository pricesRepository;
 
-    @Autowired
-    private IVARepository ivaRepository;
-
     @GetMapping("/generatePrices")
     public IVAEntity generatePrices() throws JSONException {
-        List<UsersEntity> users = usersRepository.findAll();
-        List<ItemsEntity> items = itemsRepository.findAll();
+        List<Long> users = usersRepository.findDistinctpartyid();
+        List<ItemsEntity> items = itemsRepository.findByItemsPrices();
+        //Borrar tabla antes de registrar
+        pricesRepository.deleteAll();
 
         int count = 0;//para ciclos de users
         int count2 = 0;//para ciclos de items
 
         //Para controlar los ciclos de users
-        for (UsersEntity user : users) {
-            if (count == 1){
-                break;
-            }
+        for (Long user : users) {
+            //if (count == 1){
+            //    break;
+            //}
             count++;
             //para controlar los ciclos de items
             for (ItemsEntity item : items) {
@@ -58,7 +57,7 @@ public class APIPricesController {
                    // break;
                 //}
                 count2++;
-                JSONObject result = postSalesOrderForPrices(user.getParty_id(), item.getInventory_item_id());
+                JSONObject result = postSalesOrderForPrices (user, item.getInventory_item_id());
 
                 if (result != null) {
                     //if (result.has("chargeComponent")) {
@@ -68,19 +67,15 @@ public class APIPricesController {
                     // Verificar si chargeComponents no está vacío
                     //if (chargeComponents.length() > 0) {
                     PricesEntity priceEntity = new PricesEntity();
-                    priceEntity.setCust_account_id(user.getParty_id());
+                    priceEntity.setCust_account_id(user);
                     priceEntity.setInventory_item_id(item.getInventory_item_id());
                     priceEntity.setOrganization_id(result.optLong("InventoryOrganizationId"));
                     priceEntity.setCurrency_code(result.optString("CurrencyCode"));
                     priceEntity.setUnit_price(result.optDouble("Value"));
-                    priceEntity.setCP_IVA_id(2L);
-                    // Obtener el ID activo de IVA
-                    //Long activeIVAId = getActiveIVAId();
-                    //priceEntity.setCP_IVA_id(activeIVAId);
+                    //priceEntity.setCP_IVA_id(2L);
 
                     // Guardar el PriceEntity en la base de datos
                     pricesRepository.save(priceEntity);
-
 
                 }
             }
@@ -88,19 +83,4 @@ public class APIPricesController {
         return null;
     }
 
-
-
-    private Long getActiveIVAId(){
-        Date currentDate = new Date(System.currentTimeMillis()); // Obtener la fecha actual
-
-        // Consultar IVAEntity para encontrar el registro activo
-        Optional<IVAEntity> activeIVA = ivaRepository.findActiveIVA(currentDate);
-
-        if (activeIVA.isPresent()) {
-            return activeIVA.get().getCP_IVA_id();
-        }
-
-        // Si no se encuentra un registro activo, puedes devolver un valor predeterminado o manejarlo según tus necesidades.
-        return 3L; // Valor predeterminado si no se encuentra un registro activo
-    }
 }

@@ -39,8 +39,7 @@ public interface ItemsRepository extends JpaRepository <ItemsEntity,Long>{
     @Query("SELECT DISTINCT i.Atribute7 FROM ItemsEntity i")
     public List<String> findDistinctAttribute7();
 
-
-
-
+    @Query(value = "SELECT i FROM ItemsEntity i WHERE i.Atribute9 <> 0")
+    public List<ItemsEntity> findByItemsPrices();
 
 }

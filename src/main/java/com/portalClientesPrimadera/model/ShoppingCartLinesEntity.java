@@ -32,6 +32,6 @@ public class ShoppingCartLinesEntity {
     private Long CP_cart_Quantity_packages;
 
     @Column(name = "CP_cart_Quantity_volume", nullable = false)
-    private Long CP_cart_Quantity_volume;
+    private Double CP_cart_Quantity_volume;
     
 }
