@@ -32,6 +32,6 @@ public class OrderLinesEntity {
     private Long CP_order_Quantity_packages;
 
     @Column(name = "CP_order_Quantity_volume", nullable = false)
-    private Long CP_order_Quantity_volume;
+    private Double CP_order_Quantity_volume;
     
 }
