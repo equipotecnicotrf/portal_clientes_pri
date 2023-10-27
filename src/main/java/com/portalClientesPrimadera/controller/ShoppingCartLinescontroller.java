@@ -42,9 +42,10 @@ public class ShoppingCartLinescontroller {
         return shoppingCartLinesRepository.findBycpcartid(cartid);
     }
 
-    @GetMapping("/ShoppingCartLines/items/{cartid}")
-    public List<ArrayList> getshoppingcartlinesitemsbycartid(@PathVariable Long cartid) {
-        return shoppingCartLinesRepository.findByitemscpcartid(cartid);
+    @GetMapping("/ShoppingCartLines/items/")
+    public List<ArrayList> getshoppingcartlinesitemsbycartid(@RequestParam (name = "cartid") Long cp_cart_id,
+                                                             @RequestParam(name = "Cust_account_id") Long custAccountId) {
+        return shoppingCartLinesRepository.findByitemscpcartid(cp_cart_id, custAccountId);
     }
 
     @DeleteMapping("/ShoppingCartLines/{id}")

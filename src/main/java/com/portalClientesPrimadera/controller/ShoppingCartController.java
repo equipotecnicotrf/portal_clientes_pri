@@ -47,6 +47,14 @@ public class ShoppingCartController {
         return shoppinCartRepository.findByCustAccountIdAndCpUserId(custAccountId, CP_user_id);
     }
 
+    @GetMapping("/ShoppingCart/linesanduser")
+    public List<ArrayList> getShoppingCartlinesanduserByCustAccountIdAndCpUserId(
+            @RequestParam(name = "Cust_account_id") Long custAccountId,
+            @RequestParam(name = "CP_user_id") Long CP_user_id
+    ) {
+        return shoppinCartRepository.findByshopintcartAndLinesCustAccountIdAndCpUserId(custAccountId, CP_user_id);
+    }
+
 
 
 
