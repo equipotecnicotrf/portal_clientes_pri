@@ -1,6 +1,9 @@
 package com.portalClientesPrimadera.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.portalClientesPrimadera.model.ShoppingCartEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +40,21 @@ public class ShoppingCartLinescontroller {
     @GetMapping("/ShoppingCartLines/cartid/{cartid}")
     public List<ShoppingCartLinesEntity> getshoppingcartlinesbycartid(@PathVariable Long cartid) {
         return shoppingCartLinesRepository.findBycpcartid(cartid);
+    }
+
+    @GetMapping("/ShoppingCartLines/items/")
+    public List<ArrayList> getshoppingcartlinesitemsbycartid(@RequestParam (name = "cartid") Long cp_cart_id,
+                                                             @RequestParam(name = "Cust_account_id") Long custAccountId) {
+        return shoppingCartLinesRepository.findByitemscpcartid(cp_cart_id, custAccountId);
+    }
+
+    @DeleteMapping("/ShoppingCartLines/{id}")
+    public ResponseEntity<Map<String,Boolean>> eliminarlineacarrito(@PathVariable Long id){
+        ShoppingCartLinesEntity shoppingCartLines = shoppingCartLinesRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("La linea del carrito de compra no se encuentra con el id " + id ));
+        shoppingCartLinesRepository.delete(shoppingCartLines);
+        Map<String,Boolean> response = new HashMap<>();
+        response.put("Deleted", Boolean.TRUE);
+        return ResponseEntity.ok(response);
     }
 
 }
