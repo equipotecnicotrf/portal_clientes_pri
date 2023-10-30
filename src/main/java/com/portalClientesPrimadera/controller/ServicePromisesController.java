@@ -1,6 +1,7 @@
 package com.portalClientesPrimadera.controller;
 
 import com.portalClientesPrimadera.exception.ResourceNotFoundException;
+import com.portalClientesPrimadera.model.NotificationsEntity;
 import com.portalClientesPrimadera.model.ServicePromisesEntity;
 import com.portalClientesPrimadera.repository.ServicePromisesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,16 @@ public class ServicePromisesController {
         ServicePromisesEntity ServicePromise = servicePromisesRepository.findById(id).orElseThrow(()->
                 new ResourceNotFoundException("La promesa de servicio no se encuentra con el id " + id));
         return ResponseEntity.ok(ServicePromise);
+    }
+
+    @PutMapping ("/ServicePromises/{id}")
+    public ResponseEntity<ServicePromisesEntity> actualizarServicePromiseById(@PathVariable Long id, @RequestBody ServicePromisesEntity PromiseRequest){
+        ServicePromisesEntity ServicePromise = servicePromisesRepository.findById(id).orElseThrow(()->
+                new ResourceNotFoundException("La promesa de servicio no se encuentra con el id " + id));
+                ServicePromise.setCP_type_promise(PromiseRequest.getCP_type_promise());
+                ServicePromise.setCP_description_promise(PromiseRequest.getCP_description_promise());
+        ServicePromisesEntity PromiseActualizada = servicePromisesRepository.save(ServicePromise);
+        return ResponseEntity.ok(PromiseActualizada);
     }
 
 
