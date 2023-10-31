@@ -3,6 +3,7 @@ package com.portalClientesPrimadera.controller;
 import com.portalClientesPrimadera.exception.ResourceNotFoundException;
 import com.portalClientesPrimadera.model.NotificationsEntity;
 import com.portalClientesPrimadera.model.ServicePromisesEntity;
+import com.portalClientesPrimadera.model.UsersEntity;
 import com.portalClientesPrimadera.repository.ServicePromisesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -42,6 +43,11 @@ public class ServicePromisesController {
                 ServicePromise.setCP_description_promise(PromiseRequest.getCP_description_promise());
         ServicePromisesEntity PromiseActualizada = servicePromisesRepository.save(ServicePromise);
         return ResponseEntity.ok(PromiseActualizada);
+    }
+
+    @GetMapping("/ServicePromises/context")
+    public List<ServicePromisesEntity> getpromesaportipo(@RequestParam(name = "CP_type_promise") String CP_type_promise) {
+        return servicePromisesRepository.findByCPtypepromise(CP_type_promise);
     }
 
 
