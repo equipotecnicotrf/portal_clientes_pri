@@ -35,8 +35,6 @@ public class AddressesEntity {
     @Column(name = "Site_use_code", nullable = false)
     private String Site_use_code;
 
-    @Column(name = "CP_type_order_id", nullable = false)
-    private Integer CP_type_order_id;
 
     @Column(name = "organization_id", nullable = false)
     private Long organization_id;
