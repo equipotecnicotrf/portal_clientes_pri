@@ -51,6 +51,8 @@ public class UsersController {
         users.setCP_estatus(usersRequest.getCP_estatus());
         users.setCP_cell_phone(usersRequest.getCP_cell_phone());
         users.setParty_id(usersRequest.getParty_id());
+        users.setPayment_terms(usersRequest.getPayment_terms());
+        users.setTransactional_currency_code(usersRequest.getTransactional_currency_code());
 
         UsersEntity userActualizado = usersRepository.save(users);
         return ResponseEntity.ok(userActualizado);

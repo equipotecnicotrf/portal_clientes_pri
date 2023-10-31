@@ -5,7 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.portalClientesPrimadera.model.NotificationsEntity;
 import com.portalClientesPrimadera.model.ShoppingCartEntity;
+import com.portalClientesPrimadera.model.UsersEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -57,4 +59,15 @@ public class ShoppingCartLinescontroller {
         return ResponseEntity.ok(response);
     }
 
+    @PutMapping("/ShoppingCartLines/{id}")
+    public ResponseEntity<ShoppingCartLinesEntity> actualizarShoplinePorId(@PathVariable Long id,
+                                                                   @RequestBody ShoppingCartLinesEntity shoplinesRequest) {
+        ShoppingCartLinesEntity shoppingCartLines = shoppingCartLinesRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("La linea del carrito de compra no se encuentra con el id " + id ));
+        shoppingCartLines.setCP_cart_Quantity_packages(shoplinesRequest.getCP_cart_Quantity_packages());
+        shoppingCartLines.setCP_cart_Quantity_volume(shoplinesRequest.getCP_cart_Quantity_volume());
+        shoppingCartLines.setCP_cart_Quantity_units(shoplinesRequest.getCP_cart_Quantity_units());
+
+        ShoppingCartLinesEntity shoplinesActualizada = shoppingCartLinesRepository.save(shoppingCartLines);
+        return ResponseEntity.ok(shoplinesActualizada);
+    }
 }

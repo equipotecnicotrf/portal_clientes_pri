@@ -3,8 +3,11 @@ package com.portalClientesPrimadera.controller;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.portalClientesPrimadera.model.ShoppingCartLinesEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -53,6 +56,15 @@ public class ShoppingCartController {
             @RequestParam(name = "CP_user_id") Long CP_user_id
     ) {
         return shoppinCartRepository.findByshopintcartAndLinesCustAccountIdAndCpUserId(custAccountId, CP_user_id);
+    }
+
+    @DeleteMapping("/ShoppingCart/{id}")
+    public ResponseEntity<Map<String,Boolean>> eliminarcarrito(@PathVariable Long id){
+        ShoppingCartEntity shoppingCart = shoppinCartRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("El carrito de compra no se encontro con el id "+ id));
+        shoppinCartRepository.delete(shoppingCart);
+        Map<String,Boolean> response = new HashMap<>();
+        response.put("Deleted", Boolean.TRUE);
+        return ResponseEntity.ok(response);
     }
 
 

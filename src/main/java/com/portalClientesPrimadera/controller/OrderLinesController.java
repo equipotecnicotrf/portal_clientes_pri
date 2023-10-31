@@ -2,15 +2,10 @@ package com.portalClientesPrimadera.controller;
 
 import java.util.List;
 
+import com.portalClientesPrimadera.model.ShoppingCartLinesEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.portalClientesPrimadera.exception.ResourceNotFoundException;
 import com.portalClientesPrimadera.model.OrderLinesEntity;
@@ -37,6 +32,18 @@ public class OrderLinesController {
     public ResponseEntity <OrderLinesEntity> getOrderLinesByid(@PathVariable Long id){
         OrderLinesEntity orderLines = orderLinesRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("La Linea de orden no se encuentra con el id " + id));
         return ResponseEntity.ok(orderLines);
+    }
+
+    @PutMapping("/OrderLines/{id}")
+    public ResponseEntity<OrderLinesEntity> actualizarOrderlinePorId(@PathVariable Long id,
+                                                                       @RequestBody OrderLinesEntity orderlinesRequest) {
+        OrderLinesEntity orderLines = orderLinesRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("La Linea de orden no se encuentra con el id " + id));
+        orderLines.setCP_order_Quantity_packages(orderlinesRequest.getCP_order_Quantity_packages());
+        orderLines.setCP_order_Quantity_volume(orderlinesRequest.getCP_order_Quantity_volume());
+        orderLines.setCP_order_Quantity_units(orderlinesRequest.getCP_order_Quantity_units());
+
+        OrderLinesEntity orderlinesActualizada = orderLinesRepository.save(orderLines);
+        return ResponseEntity.ok(orderlinesActualizada);
     }
 
 }
