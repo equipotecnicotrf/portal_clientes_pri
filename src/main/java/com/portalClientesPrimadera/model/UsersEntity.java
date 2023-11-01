@@ -51,6 +51,7 @@ public class UsersEntity {
     @Column(name = "transactional_currency_code", nullable = false)
     private String transactional_currency_code;
 
-
+    @Column(name = "CP_type_order_id", nullable = false)
+    private Integer CP_type_order_id;
 
 }

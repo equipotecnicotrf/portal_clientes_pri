@@ -53,6 +53,7 @@ public class UsersController {
         users.setParty_id(usersRequest.getParty_id());
         users.setPayment_terms(usersRequest.getPayment_terms());
         users.setTransactional_currency_code(usersRequest.getTransactional_currency_code());
+        users.setCP_type_order_id(usersRequest.getCP_type_order_id());
 
         UsersEntity userActualizado = usersRepository.save(users);
         return ResponseEntity.ok(userActualizado);
