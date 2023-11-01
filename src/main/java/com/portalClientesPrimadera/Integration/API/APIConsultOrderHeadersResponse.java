@@ -10,13 +10,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class APIConsultOrderResponse {
+public class APIConsultOrderHeadersResponse {
 
     private Long HeaderId;
     private String OrderKey;
     private String Message;
 
-    public APIConsultOrderResponse(Long HeaderId, String OrderKey) {
+    public APIConsultOrderHeadersResponse(Long HeaderId, String OrderKey) {
         this.HeaderId = HeaderId;
         this.OrderKey = OrderKey;
     }

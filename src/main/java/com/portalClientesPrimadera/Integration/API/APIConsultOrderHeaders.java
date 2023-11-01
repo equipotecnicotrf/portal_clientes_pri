@@ -4,16 +4,17 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.*;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 
-public class APIConsultOrder {
+@Service
+public class APIConsultOrderHeaders {
 
-
-    public ResponseEntity<APIConsultOrderResponse[]> getOrders(
+    public ResponseEntity<APIConsultOrderHeadersResponse[]> getOrdersHeaders(
             Long BuyingPartyId,
             String TransactionTypeCode,
             String CreationDate,
@@ -36,8 +37,8 @@ public class APIConsultOrder {
         } else {
             // El StatusCode no es válido, establece un mensaje de error en errorMessage
             String errorMessage = "El StatusCode no es válido";
-            APIConsultOrderResponse errorResponse = new APIConsultOrderResponse(null, null);
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new APIConsultOrderResponse[]{errorResponse});
+            APIConsultOrderHeadersResponse errorResponse = new APIConsultOrderHeadersResponse(null, null);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new APIConsultOrderHeadersResponse[]{errorResponse});
         }
 
         //Armar la segunda parte del path para la URL con las variables recibidas en la función
@@ -81,13 +82,13 @@ public class APIConsultOrder {
                 // Verifica si el campo "items" existe en la respuesta JSON
                 if (responseMap.containsKey("items")) {
                     List<Map<String, Object>> items = (List<Map<String, Object>>) responseMap.get("items");
-                    APIConsultOrderResponse[] responseData = new APIConsultOrderResponse[items.size()];
+                    APIConsultOrderHeadersResponse[] responseData = new APIConsultOrderHeadersResponse[items.size()];
 
                     for (int i = 0; i < items.size(); i++) {
                         Map<String, Object> item = items.get(i);
                         Long headerId = (Long) item.get("HeaderId");
                         String orderKey = (String) item.get("OrderKey");
-                        responseData[i] = new APIConsultOrderResponse(headerId, orderKey);
+                        responseData[i] = new APIConsultOrderHeadersResponse(headerId, orderKey);
                     }
 
                     return ResponseEntity.ok(responseData);
@@ -107,22 +108,22 @@ public class APIConsultOrder {
         }
     }
 
-    public static void main(String[] args){
+    /*public static void main(String[] args){
         try {
-            APIConsultOrder apiConsultOrder = new APIConsultOrder();
+            APIConsultOrderHeaders apiConsultOrderHeaders = new APIConsultOrderHeaders();
             Long buyingPartyId = 100000051076712L; // Reemplaza con los valores adecuados
             String transactionTypeCode = "NACIONAL"; // Reemplaza con los valores adecuados
             String creationDate = "2023-09-01"; // Reemplaza con los valores adecuados
             String statusCode = "OPEN"; // Reemplaza con los valores adecuados
 
-            ResponseEntity<APIConsultOrderResponse[]> response = apiConsultOrder.getOrders(buyingPartyId, transactionTypeCode, creationDate, statusCode);
+            ResponseEntity<APIConsultOrderHeadersResponse[]> response = apiConsultOrderHeaders.getOrdersHeaders(buyingPartyId, transactionTypeCode, creationDate, statusCode);
 
             // Verifica si la respuesta fue exitosa
             if (response.getStatusCode() == HttpStatus.OK) {
-                APIConsultOrderResponse[] responseData = response.getBody();
+                APIConsultOrderHeadersResponse[] responseData = response.getBody();
 
                 // Imprime los datos de responseData
-                for (APIConsultOrderResponse order : responseData) {
+                for (APIConsultOrderHeadersResponse order : responseData) {
                     System.out.println("HeaderId: " + order.getHeaderId());
                     System.out.println("OrderKey: " + order.getOrderKey());
                     System.out.println();
@@ -133,5 +134,5 @@ public class APIConsultOrder {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 }
