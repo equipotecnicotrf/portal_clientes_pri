@@ -17,14 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1")
 public class APIConsultOrderHeadersAndLinesController {
 
+    @Autowired
     APIConsultOrderHeaders apiConsultOrderHeaders;
+    @Autowired
     APIConsultOrderLines apiConsultOrderLines;
 
-    @Autowired
-    public APIConsultOrderLinesController(APIConsultOrderHeaders apiConsultOrderHeaders, APIConsultOrderLines apiConsultOrderLines) {
-        this.apiConsultOrderHeaders = apiConsultOrderHeaders;
-        this.apiConsultOrderLines = apiConsultOrderLines;
-    }
 
     @GetMapping("/getOrdersLinesAndHeaders")
     public ResponseEntity<APIConsultOrderLinesResponse[][]> getOrdersLinesAndHeaders(
@@ -47,31 +44,11 @@ public class APIConsultOrderHeadersAndLinesController {
                     ResponseEntity<APIConsultOrderLinesResponse[][]> linesResponse = apiConsultOrderLines.getOrdersLinesAndHeadres(headers);
 
                     if (linesResponse.getStatusCode() == HttpStatus.OK) {
-                        APIConsultOrderLinesResponse[][] lines = linesResponse.getBody();
-
-                        for (int i = 0; i < lines.length; i++) {
-                            APIConsultOrderHeadersResponse header = headers[i];
-                            APIConsultOrderLinesResponse[] linesForHeader = lines[i];
-
-                            System.out.println("Encabezado para OrderKey: " + header.getOrderKey());
-
-                            if (linesForHeader != null) {
-                                // Iterar a través de las líneas de este encabezado
-                                for (APIConsultOrderLinesResponse line : linesForHeader) {
-                                    System.out.println("Linea ID: " + line.getFulfillLineId());
-                                    System.out.println("Source Transaction Number: " + line.getSourceTransactionNumber());
-                                    System.out.println("Ordered Quantity: " + line.getOrderedQuantity());
-                                    System.out.println("Requested Ship Date: " + line.getRequestedShipDate());
-                                    System.out.println("Unit List Price: " + line.getUnitListPrice());
-                                    System.out.println("Unit Selling Price: " + line.getUnitSellingPrice());
-                                    System.out.println();
-                                }
-                            } else {
-                                System.err.println("No se encontraron líneas para este encabezado.");
-                            }
-                        }
+                        // Devuelve directamente la respuesta del servicio de líneas
+                        return linesResponse;
                     } else {
                         System.err.println("Error en la consulta de líneas: " + linesResponse.getStatusCode());
+                        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
                     }
                 } else {
                     System.err.println("No se encontraron encabezados para consultar líneas.");
@@ -80,10 +57,11 @@ public class APIConsultOrderHeadersAndLinesController {
                 System.err.println("Error en la consulta de encabezados: " + headersResponse.getStatusCode());
             }
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            System.err.println("Error en la deserialización JSON: " + e.getMessage());
         }
-        // Devuelve una respuesta apropiada aquí según tus necesidades
-        return ResponseEntity.ok(null);
+
+        // En caso de error, puedes devolver una respuesta con un mensaje de error
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }
 
 }
