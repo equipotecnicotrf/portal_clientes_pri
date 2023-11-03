@@ -27,14 +27,19 @@ public class APIConsultOrderHeadersAndLinesController {
     public ResponseEntity<APIConsultOrderLinesResponse[][]> getOrdersLinesAndHeaders(
             @RequestParam(name = "buyingPartyId") Long buyingPartyId,
             @RequestParam(name = "transactionTypeCode") String transactionTypeCode,
-            @RequestParam(name = "creationDate") String creationDate,
-            @RequestParam(name = "statusCode") String statusCode) {
+            @RequestParam(name = "statusCode") String statusCode,
+            @RequestParam(name = "creationDateFrom") String creationDateFrom,
+            @RequestParam(name = "creationDateTo") String creationDateTo
+            )
+             {
         try {
             ResponseEntity<APIConsultOrderHeadersResponse[]> headersResponse = apiConsultOrderHeaders.getOrdersHeaders(
                     buyingPartyId,
                     transactionTypeCode,
-                    creationDate,
-                    statusCode
+                    statusCode,
+                    creationDateFrom,
+                    creationDateTo
+
             );
 
             if (headersResponse.getStatusCode() == HttpStatus.OK) {

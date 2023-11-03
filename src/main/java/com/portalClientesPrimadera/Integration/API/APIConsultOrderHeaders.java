@@ -17,13 +17,16 @@ public class APIConsultOrderHeaders {
     public ResponseEntity<APIConsultOrderHeadersResponse[]> getOrdersHeaders(
             Long BuyingPartyId,
             String TransactionTypeCode,
-            String CreationDate,
-            String StatusCode
+            String StatusCode,
+            String CreationDateFrom,
+            String CreationDateTo
+
         ) throws JsonProcessingException {
 
         //Crear las variables necesarias para la consulta
         Boolean OpenFlag;
-        String creationDate = CreationDate + "T00:00:00";
+        String creationDateFrom = CreationDateFrom;
+        String creationDateTo = CreationDateTo;
         int limit = 500;
         int offset = 0;
         //Crear la primera parte de la URL para el PATH
@@ -45,8 +48,10 @@ public class APIConsultOrderHeaders {
         String q = "BuyingPartyId=" + BuyingPartyId
                 + ";SubmittedFlag=true;TransactionTypeCode=" + TransactionTypeCode
                 + ";OpenFlag=" + OpenFlag
-                + ";CreationDate>" + creationDate
-                + ";StatusCode=" + StatusCode;
+                + ";StatusCode=" + StatusCode
+                + ";CreationDate<=" + creationDateTo
+                + ";CreationDate>=" + creationDateFrom;
+
 
         //Crear la URL completa para el consumo API
         String FullApiUrl = apiUrl + q + "&limit=" + limit + "&offset=" + offset;

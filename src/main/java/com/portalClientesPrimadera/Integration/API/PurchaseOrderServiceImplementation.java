@@ -33,7 +33,7 @@ public class PurchaseOrderServiceImplementation implements PurchaseOrderService 
                 String salesperson,
                 String customerPONumber,
                 long customerAccountId,
-                long siteUseId,
+                //long siteUseId,
                 long partyId,
                 long siteId,
                 List<PurchaseOrderRequest.LineItem> lineItems) {
@@ -72,7 +72,7 @@ public class PurchaseOrderServiceImplementation implements PurchaseOrderService 
                 JSONArray billToCustomerArray = new JSONArray();
                 JSONObject billToCustomer = new JSONObject();
                 billToCustomer.put("CustomerAccountId", customerAccountId);//Se debe reibir
-                billToCustomer.put("SiteUseId", siteUseId);//Se debe reibir
+               //billToCustomer.put("SiteUseId", siteUseId);//Se debe reibir
                 billToCustomerArray.put(billToCustomer);
 
                 //Crear un Array para el campo que lleva varios datos
