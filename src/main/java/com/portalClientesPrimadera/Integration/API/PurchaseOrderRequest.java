@@ -21,7 +21,7 @@ public class PurchaseOrderRequest {
     private String salesperson;
     private String customerPONumber;
     private Long customerAccountId;
-    private Long siteUseId;
+    //private Long siteUseId;
     private Long partyId;
     private Long siteId;
     private List<LineItem> lineItems;
