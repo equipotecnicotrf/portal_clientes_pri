@@ -3,6 +3,7 @@ package com.portalClientesPrimadera.controller;
 import com.portalClientesPrimadera.Integration.soap.EjecutarReporteItemInventario;
 import com.portalClientesPrimadera.Integration.soap.ItemService;
 import com.portalClientesPrimadera.model.ItemReporte;
+import com.portalClientesPrimadera.repository.ItemsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,8 +21,12 @@ public class ReporteItemInventarioController {
     @Autowired
     private ItemService itemService;
 
+    @Autowired
+    private ItemsRepository itemsRepository;
+
     @GetMapping("/reporteItemInventario")
     public List<ItemReporte> listarItemsInventario() {
+        itemsRepository.deleteAll();
         List<ItemReporte> items =
                 ejecutarReporteItemInventario.ReporteItemsInventario(
                         "/Custom/PRIMADERA/PORTAL_CLIENTES/Rpte_Maestra_Articulos.xdo",
