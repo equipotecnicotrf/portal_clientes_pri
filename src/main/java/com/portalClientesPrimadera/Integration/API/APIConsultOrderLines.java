@@ -79,21 +79,55 @@ public class APIConsultOrderLines {
                             Long headerId = header.getHeaderId();
                             String orderKey = OrderKey;
                             Long FulfillLineId = (Long) item.get("FulfillLineId");
+                            String FulfillLineNumber = (String) item.get("FulfillLineNumber");
+                            String SourceTransactionLineNumber = (String) item.get("SourceTransactionLineNumber");
                             String SourceTransactionNumber = (String) item.get("SourceTransactionNumber");
+                            String ProductDescription = (String) item.get("ProductDescription");
                             Integer OrderedQuantity = (Integer) item.get("OrderedQuantity");
                             String RequestedShipDate = (String) item.get("RequestedShipDate");
+                            String ActualShipDate = (String) item.get("ActualShipDate");
                             Integer UnitListPrice = (Integer) item.get("UnitListPrice");
                             Integer UnitSellingPrice = (Integer) item.get("UnitSellingPrice");
+                            Boolean OnHoldFlag = (Boolean) item.get("OnHoldFlag");
+                            String StatusCode = (String) item.get("StatusCode");
+                            String Status = (String) item.get("Status");
+
+                            APIConsultOrderLinesResponse apiResponse = new APIConsultOrderLinesResponse();
+                            List<APIConsultOrderLinesResponse.LineDetail> lineDetails = new ArrayList<>();
+                            if (item.get("lineDetails")  != null) {
+                                List<Map<String, Object>> lineDetailsData = (List<Map<String, Object>>) item.get("lineDetails");
+                                for (Map<String, Object> lineDetailData : lineDetailsData) {
+                                    String billOfLadingNumber = (String) lineDetailData.get("BillOfLadingNumber");
+                                    String billingTransactionNumber = (String) lineDetailData.get("BillingTransactionNumber");
+
+                                    APIConsultOrderLinesResponse.LineDetail lineDetail = apiResponse.new LineDetail(billOfLadingNumber, billingTransactionNumber);
+                                    lineDetails.add(lineDetail);
+                                }
+                                // Agregar la lista de lineDetails a la instancia de APIConsultOrderLinesResponse
+                                apiResponse.setLineDetails(lineDetails);
+                            }else {
+                                // Si "lineDetails" está vacío, simplemente crea una lista vacía
+                                apiResponse.setLineDetails(new ArrayList<>());
+                            }
 
                             responses.add(new APIConsultOrderLinesResponse(
                                     headerId,
                                     orderKey,
                                     FulfillLineId,
+                                    FulfillLineNumber,
+                                    SourceTransactionLineNumber,
                                     SourceTransactionNumber,
+                                    ProductDescription,
                                     OrderedQuantity,
                                     RequestedShipDate,
+                                    ActualShipDate,
                                     UnitListPrice,
-                                    UnitSellingPrice));
+                                    UnitSellingPrice,
+                                    OnHoldFlag,
+                                    StatusCode,
+                                    Status,
+                                    lineDetails
+                                    ));
                         }
                         // Agregar las respuestas recopiladas a allResponses
                         allResponses.add(responses);
