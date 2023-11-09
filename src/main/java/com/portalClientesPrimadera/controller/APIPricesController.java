@@ -39,7 +39,7 @@ public class APIPricesController {
     public IVAEntity generatePrices() throws JSONException {
         List<Long> users = usersRepository.findDistinctpartyid();
         List<ItemsEntity> items = itemsRepository.findByItemsPrices();
-        //Borrar tabla antes de registrar
+        //Borrar tabla antes de registrar-
         pricesRepository.deleteAll();
 
         int count = 0;//para ciclos de users
