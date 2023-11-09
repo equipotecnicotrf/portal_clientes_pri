@@ -40,7 +40,7 @@ public class APIConsultOrderHeaders {
         } else {
             // El StatusCode no es válido, establece un mensaje de error en errorMessage
             String errorMessage = "El StatusCode no es válido";
-            APIConsultOrderHeadersResponse errorResponse = new APIConsultOrderHeadersResponse(null, null);
+            APIConsultOrderHeadersResponse errorResponse = new APIConsultOrderHeadersResponse(null, null, null);
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new APIConsultOrderHeadersResponse[]{errorResponse});
         }
 
@@ -92,8 +92,9 @@ public class APIConsultOrderHeaders {
                     for (int i = 0; i < items.size(); i++) {
                         Map<String, Object> item = items.get(i);
                         Long headerId = (Long) item.get("HeaderId");
+                        String sourceTransactionId = (String) item.get("SourceTransactionId");
                         String orderKey = (String) item.get("OrderKey");
-                        responseData[i] = new APIConsultOrderHeadersResponse(headerId, orderKey);
+                        responseData[i] = new APIConsultOrderHeadersResponse(headerId, sourceTransactionId, orderKey);
                     }
 
                     return ResponseEntity.ok(responseData);
