@@ -13,11 +13,13 @@ import lombok.Setter;
 public class APIConsultOrderHeadersResponse {
 
     private Long HeaderId;
+    private String SourceTransactionId;
     private String OrderKey;
     private String Message;
 
-    public APIConsultOrderHeadersResponse(Long HeaderId, String OrderKey) {
+    public APIConsultOrderHeadersResponse(Long HeaderId, String SourceTransactionId, String OrderKey) {
         this.HeaderId = HeaderId;
+        this.SourceTransactionId = SourceTransactionId;
         this.OrderKey = OrderKey;
     }
 

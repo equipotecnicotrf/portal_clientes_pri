@@ -36,6 +36,37 @@ public class APIConsultOrderLines {
         for (APIConsultOrderHeadersResponse header : headers){
             //Se toma el OrderKey de cada elemento para tomarlo como variable e iterarlo en el consumo de la API
             String OrderKey = header.getOrderKey();
+            String sourceTransactionId = header.getSourceTransactionId();
+            Long siteId = null;
+            String address1 = null;
+            String city = null;
+            String state = null;
+
+            //Llamar los datos de direccion
+            APIConsultAddressForOrder apiConsultAddressForOrder = new APIConsultAddressForOrder();
+            ResponseEntity<APIConsultAddressForOrderResponse[]> addressResponse = apiConsultAddressForOrder.getAddressForOrder(sourceTransactionId);
+
+            if (addressResponse.getStatusCode() == HttpStatus.OK) {
+                APIConsultAddressForOrderResponse[] responseData = addressResponse.getBody();
+
+                // Verificar si responseData no es nulo y tiene al menos un elemento
+                if (responseData != null && responseData.length > 0) {
+                    // Obtener los valores del primer elemento del array (puedes ajustar según tus necesidades)
+                    APIConsultAddressForOrderResponse order = responseData[0];
+
+                    // Asignar valores a las variables
+                    siteId = order.getSiteId();
+                    address1 = order.getAddress1();
+                    city = order.getCity();
+                    state = order.getState();
+
+                } else {
+                    // Manejar el caso en que responseData está vacío
+                    System.err.println("La respuesta de la dirección está vacía");
+                }
+            } else {
+                System.err.println("Error en la solicitud: " + addressResponse.getStatusCode());
+            }
 
             // Se almacena cada respuesta en una lista
             List<APIConsultOrderLinesResponse> responses = new ArrayList<>();
@@ -78,6 +109,7 @@ public class APIConsultOrderLines {
                             Map<String, Object> item = items.get(i);
                             Long headerId = header.getHeaderId();
                             String orderKey = OrderKey;
+                            String SourceTransactionId = sourceTransactionId;
                             Long FulfillLineId = (Long) item.get("FulfillLineId");
                             String FulfillLineNumber = (String) item.get("FulfillLineNumber");
                             String SourceTransactionLineNumber = (String) item.get("SourceTransactionLineNumber");
@@ -91,6 +123,10 @@ public class APIConsultOrderLines {
                             Boolean OnHoldFlag = (Boolean) item.get("OnHoldFlag");
                             String StatusCode = (String) item.get("StatusCode");
                             String Status = (String) item.get("Status");
+                            Long SiteId = siteId;
+                            String Address1 = address1;
+                            String City = city;
+                            String State = state;
 
                             APIConsultOrderLinesResponse apiResponse = new APIConsultOrderLinesResponse();
                             List<APIConsultOrderLinesResponse.LineDetail> lineDetails = new ArrayList<>();
@@ -113,6 +149,7 @@ public class APIConsultOrderLines {
                             responses.add(new APIConsultOrderLinesResponse(
                                     headerId,
                                     orderKey,
+                                    SourceTransactionId,
                                     FulfillLineId,
                                     FulfillLineNumber,
                                     SourceTransactionLineNumber,
@@ -126,6 +163,10 @@ public class APIConsultOrderLines {
                                     OnHoldFlag,
                                     StatusCode,
                                     Status,
+                                    SiteId,
+                                    Address1,
+                                    City,
+                                    State,
                                     lineDetails
                                     ));
                         }

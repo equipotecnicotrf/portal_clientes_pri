@@ -4,29 +4,23 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.*;
-import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 
+public class APIConsultAddressForOrder {
 
-@Service
-public class APIConsultOrderByOrderNumber {
+    public ResponseEntity<APIConsultAddressForOrderResponse[]> getAddressForOrder (
+        String sourceTransactionId
+        ) throws JsonProcessingException {
 
-    public ResponseEntity<APIConsultOrderHeadersResponse[]> getOrderByNumberOrder(String orderNumber) throws JsonProcessingException {
-
-        String apiUrl = "https://efdg-test.fa.us6.oraclecloud.com/fscmRestApi/resources/11.13.18.05/salesOrdersForOrderHub?";
-        int limit = 500;
-        int offset = 0;
-        String q = "&q=OrderNumber=" + orderNumber;
-
-        //Armar la URL completa para consumir el API
-        String FullApiUrl = apiUrl + "limit=" + limit + "&offset=" + offset + q;
+        //Crear la primera parte de la URL para el PATH y concatenar la variable
+        String apiUrl = "https://efdg-test.fa.us6.oraclecloud.com:443/fscmRestApi/resources/11.13.18.05/salesOrdersForOrderHub/OPS:";
+        String FullApiUrl = apiUrl + sourceTransactionId + "/child/shipToCustomer";
         System.out.println(FullApiUrl);
 
-        // Autorización básica (usuario:contraseña)
         String username = "INTEGRACION_PRI";
         String password = "Oracle2023*";
         String credentials = username + ":" + password;
@@ -44,7 +38,6 @@ public class APIConsultOrderByOrderNumber {
         // Realizar la solicitud GET a la API
         ResponseEntity<String> response = new RestTemplate().exchange(FullApiUrl, HttpMethod.GET, entity, String.class);
 
-        // Verificar que la respuesta sea exitosa (código de estado 200)
         if (response.getStatusCode() == HttpStatus.OK) {
             // Obtener el cuerpo de la respuesta JSON
             String jsonResponse = response.getBody();
@@ -56,15 +49,15 @@ public class APIConsultOrderByOrderNumber {
                 // Verifica si el campo "items" existe en la respuesta JSON
                 if (responseMap.containsKey("items")) {
                     List<Map<String, Object>> items = (List<Map<String, Object>>) responseMap.get("items");
-                    APIConsultOrderHeadersResponse[] responseData = new APIConsultOrderHeadersResponse[items.size()];
+                    APIConsultAddressForOrderResponse[] responseData = new APIConsultAddressForOrderResponse[items.size()];
 
                     for (int i = 0; i < items.size(); i++) {
                         Map<String, Object> item = items.get(i);
-                        Long headerId = (Long) item.get("HeaderId");
-                        String sourceTransactionId = (String) item.get("SourceTransactionId");
-                        String orderKey = (String) item.get("OrderKey");
-
-                        responseData[i] = new APIConsultOrderHeadersResponse(headerId, sourceTransactionId, orderKey);
+                        Long siteId = (Long) item.get("SiteId");
+                        String address1 = (String) item.get("Address1");
+                        String city = (String) item.get("City");
+                        String state = (String) item.get("State");
+                        responseData[i] = new APIConsultAddressForOrderResponse(siteId, address1, city, state);
                     }
 
                     return ResponseEntity.ok(responseData);
@@ -83,6 +76,34 @@ public class APIConsultOrderByOrderNumber {
             return ResponseEntity.status(response.getStatusCode()).body(null);
         }
 
+
     }
+
+    /*public static void main(String[] args){
+        try {
+            APIConsultAddressForOrder apiConsultAddressForOrder = new APIConsultAddressForOrder();
+
+            String SourceTransactionId = "300000946929498"; // Reemplaza con los valores adecuados
+
+            ResponseEntity<APIConsultAddressForOrderResponse[]> response = apiConsultAddressForOrder.getAddressForOrder(SourceTransactionId);
+
+            // Verifica si la respuesta fue exitosa
+            if (response.getStatusCode() == HttpStatus.OK) {
+                APIConsultAddressForOrderResponse[] responseData = response.getBody();
+
+                // Imprime los datos de responseData
+                for (APIConsultAddressForOrderResponse order : responseData) {
+                    System.out.println("SiteId: " + order.getSiteId());
+                    System.out.println("Address1: " + order.getAddress1());
+                    System.out.println("City: " + order.getCity());
+                    System.out.println("State: " + order.getState());
+                }
+            } else {
+                System.err.println("Error en la solicitud: " + response.getStatusCode());
+            }
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+    }*/
 
 }

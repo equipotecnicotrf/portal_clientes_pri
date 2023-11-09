@@ -15,6 +15,7 @@ public class APIConsultOrderLinesResponse {
 
     private Long HeaderId;
     private String OrderKey;
+    private String SourceTransactionId;
     private Long FulfillLineId;
     private String FulfillLineNumber;
     private String SourceTransactionLineNumber;
@@ -29,6 +30,10 @@ public class APIConsultOrderLinesResponse {
     private String StatusCode;
     private String Status;
     private String Message;
+    private Long SiteId;
+    private String Address1;
+    private String City;
+    private String State;
     private List<LineDetail> lineDetails;
 
     @Getter
@@ -47,6 +52,7 @@ public class APIConsultOrderLinesResponse {
     public APIConsultOrderLinesResponse (
             Long HeaderId,
             String OrderKey,
+            String SourceTransactionId,
             Long FulfillLineId,
             String FulfillLineNumber,
             String SourceTransactionLineNumber,
@@ -60,10 +66,16 @@ public class APIConsultOrderLinesResponse {
             Boolean OnHoldFlag,
             String StatusCode,
             String Status,
+            Long SiteId,
+            String Address1,
+            String City,
+            String State,
+
             List <LineDetail> lineDetails
             ){
         this.HeaderId = HeaderId;
         this.OrderKey = OrderKey;
+        this.SourceTransactionId = SourceTransactionId;
         this.FulfillLineId = FulfillLineId;
         this.FulfillLineNumber = FulfillLineNumber;
         this.SourceTransactionLineNumber = SourceTransactionLineNumber;
@@ -77,6 +89,10 @@ public class APIConsultOrderLinesResponse {
         this.OnHoldFlag = OnHoldFlag;
         this.StatusCode = StatusCode;
         this.Status = Status;
+        this.SiteId = SiteId;
+        this.Address1 = Address1;
+        this.City = City;
+        this.State = State;
         this.lineDetails = lineDetails;
     }
 
