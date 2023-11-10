@@ -32,7 +32,7 @@ public class APIPurchaseOrderController {
                 orderRequest.getSalesperson(),
                 orderRequest.getCustomerPONumber(),
                 orderRequest.getCustomerAccountId(),
-                orderRequest.getSiteUseId(),
+                //orderRequest.getSiteUseId(),
                 orderRequest.getPartyId(),
                 orderRequest.getSiteId(),
                 orderRequest.getLineItems());
