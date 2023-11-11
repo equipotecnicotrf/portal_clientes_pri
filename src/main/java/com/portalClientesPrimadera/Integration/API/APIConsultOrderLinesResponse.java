@@ -42,10 +42,12 @@ public class APIConsultOrderLinesResponse {
     public class LineDetail {
         private String BillOfLadingNumber;
         private String BillingTransactionNumber;
+        private String BillingTransactionDate;
 
-        public LineDetail (String BillOfLadingNumber, String BillingTransactionNumber){
+        public LineDetail (String BillOfLadingNumber, String BillingTransactionNumber, String BillingTransactionDate){
             this.BillOfLadingNumber = BillOfLadingNumber;
             this.BillingTransactionNumber = BillingTransactionNumber;
+            this.BillingTransactionDate = BillingTransactionDate;
         }
     }
 
