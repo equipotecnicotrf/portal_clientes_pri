@@ -135,8 +135,9 @@ public class APIConsultOrderLines {
                                 for (Map<String, Object> lineDetailData : lineDetailsData) {
                                     String billOfLadingNumber = (String) lineDetailData.get("BillOfLadingNumber");
                                     String billingTransactionNumber = (String) lineDetailData.get("BillingTransactionNumber");
+                                    String billingTransactionDate = (String) lineDetailData.get("BillingTransactionDate");
 
-                                    APIConsultOrderLinesResponse.LineDetail lineDetail = apiResponse.new LineDetail(billOfLadingNumber, billingTransactionNumber);
+                                    APIConsultOrderLinesResponse.LineDetail lineDetail = apiResponse.new LineDetail(billOfLadingNumber, billingTransactionNumber, billingTransactionDate);
                                     lineDetails.add(lineDetail);
                                 }
                                 // Agregar la lista de lineDetails a la instancia de APIConsultOrderLinesResponse
