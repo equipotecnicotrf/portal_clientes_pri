@@ -1,5 +1,6 @@
 package com.portalClientesPrimadera.controller;
 
+
 import com.portalClientesPrimadera.model.IVAEntity;
 import com.portalClientesPrimadera.model.ItemsEntity;
 import com.portalClientesPrimadera.model.PricesEntity;
@@ -39,7 +40,7 @@ public class APIPricesController {
     public IVAEntity generatePrices() throws JSONException {
         List<Long> users = usersRepository.findDistinctpartyid();
         List<ItemsEntity> items = itemsRepository.findByItemsPrices();
-        //Borrar tabla antes de registrar
+        //Borrar tabla antes de registrar-
         pricesRepository.deleteAll();
 
         int count = 0;//para ciclos de users
