@@ -1,5 +1,6 @@
 package com.portalClientesPrimadera.controller;
 
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
@@ -90,6 +91,11 @@ public class UsersController {
         UsersEntity userActualizado = usersRepository.save(users);
         return ResponseEntity.ok(userActualizado);
 
+    }
+
+    @GetMapping("/Usersandroles")
+    public List<ArrayList> ListarUsersandroles() {
+        return usersRepository.FinbyUserYroles();
     }
 
 

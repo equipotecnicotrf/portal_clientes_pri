@@ -25,7 +25,7 @@ public interface ItemsRepository extends JpaRepository <ItemsEntity,Long>{
     @Query("SELECT DISTINCT i.Atribute2 FROM ItemsEntity i WHERE i.Atribute2 <> 'N/A' ORDER BY i.Atribute2")
     public List<String> findDistinctAttribute2();
 
-    @Query("SELECT DISTINCT i.Atribute3 FROM ItemsEntity i WHERE i.Atribute3 <> '0' ORDER BY i.Atribute3")
+    @Query("SELECT DISTINCT i.Atribute3 FROM ItemsEntity i WHERE i.Atribute3 <> 'N/A' ORDER BY i.Atribute3")
     public List<String> findDistinctAttribute3();
 
     @Query("SELECT DISTINCT i.Atribute4 FROM ItemsEntity i WHERE i.Atribute4 <> 'N/A' ORDER BY i.Atribute4")
