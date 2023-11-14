@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -32,6 +33,11 @@ public class AuditsController {
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "El registro de auditoria no existe con el CP_Audit_id " + id));
         return ResponseEntity.ok(auditEntity);
+    }
+
+    @GetMapping("/auditsanduser")
+    public List<ArrayList> ListarAuditAndUser() {
+        return auditRepository.Finbyauditanduser();
     }
 
 }
