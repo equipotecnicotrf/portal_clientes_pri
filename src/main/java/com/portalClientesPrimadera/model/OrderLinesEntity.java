@@ -33,5 +33,11 @@ public class OrderLinesEntity {
 
     @Column(name = "CP_order_Quantity_volume", nullable = false)
     private Double CP_order_Quantity_volume;
+
+    @Column(name = "CP_cart_line_id", nullable = false)
+    private Long CP_cart_line_id;
+
+    @Column(name = "CP_line_order_status", nullable = false)
+    private String CP_line_order_status;
     
 }

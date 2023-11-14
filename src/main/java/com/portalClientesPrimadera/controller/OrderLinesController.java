@@ -2,6 +2,7 @@ package com.portalClientesPrimadera.controller;
 
 import java.util.List;
 
+import com.portalClientesPrimadera.model.OrderEntity;
 import com.portalClientesPrimadera.model.ShoppingCartLinesEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -41,9 +42,15 @@ public class OrderLinesController {
         orderLines.setCP_order_Quantity_packages(orderlinesRequest.getCP_order_Quantity_packages());
         orderLines.setCP_order_Quantity_volume(orderlinesRequest.getCP_order_Quantity_volume());
         orderLines.setCP_order_Quantity_units(orderlinesRequest.getCP_order_Quantity_units());
+        orderLines.setCP_line_order_status(orderlinesRequest.getCP_line_order_status());
 
         OrderLinesEntity orderlinesActualizada = orderLinesRepository.save(orderLines);
         return ResponseEntity.ok(orderlinesActualizada);
+    }
+
+    @GetMapping("/OrderLines/cartlineid/{cartlineid}")
+    public List<OrderLinesEntity> getOrderBycartid(@PathVariable Long cartlineid) {
+        return orderLinesRepository.findByordercpcartlineid(cartlineid);
     }
 
 }
