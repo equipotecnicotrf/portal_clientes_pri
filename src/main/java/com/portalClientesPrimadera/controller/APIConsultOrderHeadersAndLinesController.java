@@ -70,11 +70,13 @@ public class APIConsultOrderHeadersAndLinesController {
 
     @GetMapping("/getOrderByOrderNumber")
     public ResponseEntity<APIConsultOrderLinesResponse[][]> getOrderByOrderNumber(
-            @RequestParam(name = "orderNumber") String orderNumber
+            @RequestParam(name = "orderNumber") String orderNumber,
+            @RequestParam(name = "buyingPartyId") Long buyingPartyId
     ){
         try {
             ResponseEntity<APIConsultOrderHeadersResponse[]> headersResponse = apiConsultOrderByOrderNumber.getOrderByNumberOrder(
-                    orderNumber
+                    orderNumber,
+                    buyingPartyId
             );
 
             if (headersResponse.getStatusCode() == HttpStatus.OK) {
