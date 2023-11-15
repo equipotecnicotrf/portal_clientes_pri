@@ -114,6 +114,8 @@ public class APIConsultOrderLines {
                             String FulfillLineNumber = (String) item.get("FulfillLineNumber");
                             String SourceTransactionLineNumber = (String) item.get("SourceTransactionLineNumber");
                             String SourceTransactionNumber = (String) item.get("SourceTransactionNumber");
+                            Long ProductId = (Long) item.get("ProductId");
+                            String ProductNumber = (String) item.get("ProductNumber");
                             String ProductDescription = (String) item.get("ProductDescription");
                             Integer OrderedQuantity = (Integer) item.get("OrderedQuantity");
                             String RequestedShipDate = (String) item.get("RequestedShipDate");
@@ -155,6 +157,8 @@ public class APIConsultOrderLines {
                                     FulfillLineNumber,
                                     SourceTransactionLineNumber,
                                     SourceTransactionNumber,
+                                    ProductId,
+                                    ProductNumber,
                                     ProductDescription,
                                     OrderedQuantity,
                                     RequestedShipDate,

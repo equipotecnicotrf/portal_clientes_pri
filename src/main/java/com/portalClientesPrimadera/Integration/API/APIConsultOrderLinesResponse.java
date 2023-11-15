@@ -20,6 +20,8 @@ public class APIConsultOrderLinesResponse {
     private String FulfillLineNumber;
     private String SourceTransactionLineNumber;
     private String SourceTransactionNumber;
+    private Long ProductId;
+    private String ProductNumber;
     private String ProductDescription;
     private Integer OrderedQuantity;
     private String RequestedShipDate;
@@ -59,6 +61,8 @@ public class APIConsultOrderLinesResponse {
             String FulfillLineNumber,
             String SourceTransactionLineNumber,
             String SourceTransactionNumber,
+            Long ProductId,
+            String ProductNumber,
             String ProductDescription,
             Integer OrderedQuantity,
             String RequestedShipDate,
@@ -82,6 +86,8 @@ public class APIConsultOrderLinesResponse {
         this.FulfillLineNumber = FulfillLineNumber;
         this.SourceTransactionLineNumber = SourceTransactionLineNumber;
         this.SourceTransactionNumber = SourceTransactionNumber;
+        this.ProductId = ProductId;
+        this.ProductNumber = ProductNumber;
         this.ProductDescription = ProductDescription;
         this.OrderedQuantity = OrderedQuantity;
         this.RequestedShipDate = RequestedShipDate;
