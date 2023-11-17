@@ -18,12 +18,12 @@ public class APIConsultOrderByOrderNumber {
     public ResponseEntity<APIConsultOrderHeadersResponse[]> getOrderByNumberOrder(String orderNumber, Long buyingPartyId) throws JsonProcessingException {
 
         String apiUrl = "https://efdg-test.fa.us6.oraclecloud.com/fscmRestApi/resources/11.13.18.05/salesOrdersForOrderHub?";
-        int limit = 500;
-        int offset = 0;
-        String q = "&q=OrderNumber=" + orderNumber + ";BuyingPartyId=" + buyingPartyId;
+        //int limit = 500;
+        //int offset = 0;
+        String q = "q=OrderNumber=" + orderNumber + ";BuyingPartyId=" + buyingPartyId;
 
         //Armar la URL completa para consumir el API
-        String FullApiUrl = apiUrl + "limit=" + limit + "&offset=" + offset + q;
+        String FullApiUrl = apiUrl + q;
         System.out.println(FullApiUrl);
 
         // Autorización básica (usuario:contraseña)

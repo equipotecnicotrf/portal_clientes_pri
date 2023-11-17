@@ -26,8 +26,8 @@ public class APIConsultOrderLinesResponse {
     private Integer OrderedQuantity;
     private String RequestedShipDate;
     private String ActualShipDate;
-    private Integer UnitListPrice;
-    private Integer UnitSellingPrice;
+    private Double UnitListPrice;
+    private Double UnitSellingPrice;
     private Boolean OnHoldFlag;
     private String StatusCode;
     private String Status;
@@ -67,8 +67,8 @@ public class APIConsultOrderLinesResponse {
             Integer OrderedQuantity,
             String RequestedShipDate,
             String ActualShipDate,
-            Integer UnitListPrice,
-            Integer UnitSellingPrice,
+            Double UnitListPrice,
+            Double UnitSellingPrice,
             Boolean OnHoldFlag,
             String StatusCode,
             String Status,

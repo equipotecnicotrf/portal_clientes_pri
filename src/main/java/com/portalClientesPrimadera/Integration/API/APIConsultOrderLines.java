@@ -120,8 +120,8 @@ public class APIConsultOrderLines {
                             Integer OrderedQuantity = (Integer) item.get("OrderedQuantity");
                             String RequestedShipDate = (String) item.get("RequestedShipDate");
                             String ActualShipDate = (String) item.get("ActualShipDate");
-                            Integer UnitListPrice = (Integer) item.get("UnitListPrice");
-                            Integer UnitSellingPrice = (Integer) item.get("UnitSellingPrice");
+                            Double UnitListPrice = (Double) item.get("UnitListPrice");
+                            Double UnitSellingPrice = (Double) item.get("UnitSellingPrice");
                             Boolean OnHoldFlag = (Boolean) item.get("OnHoldFlag");
                             String StatusCode = (String) item.get("StatusCode");
                             String Status = (String) item.get("Status");
