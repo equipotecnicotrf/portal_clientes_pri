@@ -20,7 +20,7 @@ public class APIConsultOrderByOrderNumber {
         String apiUrl = "https://efdg-test.fa.us6.oraclecloud.com/fscmRestApi/resources/11.13.18.05/salesOrdersForOrderHub?";
         //int limit = 500;
         //int offset = 0;
-        String q = "q=OrderNumber=" + orderNumber + ";BuyingPartyId=" + buyingPartyId;
+        String q = "q=OrderNumber=" + orderNumber + ";BuyingPartyId=" + buyingPartyId + ";SubmittedFlag=true";
 
         //Armar la URL completa para consumir el API
         String FullApiUrl = apiUrl + q;
