@@ -21,7 +21,8 @@ public class MailConfiguration {
     @Bean
     public JavaMailSender getJavaMailSender(){
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        mailSender.setHost("smtp.office365.com");
+        //mailSender.setHost("smtp.office365.com");
+        mailSender.setHost("smtp-legacy.office365.com");
         mailSender.setPort(587);
         mailSender.setUsername(emailUser);
         mailSender.setPassword(emailpass);
