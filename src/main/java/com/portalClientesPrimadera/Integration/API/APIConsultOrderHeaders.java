@@ -17,14 +17,14 @@ public class APIConsultOrderHeaders {
     public ResponseEntity<APIConsultOrderHeadersResponse[]> getOrdersHeaders(
             Long BuyingPartyId,
             String TransactionTypeCode,
-            String StatusCode,
+            //String StatusCode,
             String CreationDateFrom,
             String CreationDateTo
 
         ) throws JsonProcessingException {
 
         //Crear las variables necesarias para la consulta
-        Boolean OpenFlag;
+        //Boolean OpenFlag;
         String creationDateFrom = CreationDateFrom;
         String creationDateTo = CreationDateTo;
         int limit = 500;
@@ -33,7 +33,7 @@ public class APIConsultOrderHeaders {
         String apiUrl = "https://efdg-test.fa.us6.oraclecloud.com/fscmRestApi/resources/11.13.18.05/salesOrdersForOrderHub?q=";
 
         //Validar el tipo de StatusCode para asignar el valor de OpenFlag, caso de que no se un StatusCode valido se retorna error
-        if ("OPEN".equals(StatusCode) || "PARTIALLY_CLOSE".equals(StatusCode)) {
+        /*if ("OPEN".equals(StatusCode) || "PARTIALLY_CLOSE".equals(StatusCode)) {
             OpenFlag = true;
         } else if ("CLOSED".equals(StatusCode) || "CANCELED".equals(StatusCode)){
             OpenFlag = false;
@@ -42,13 +42,13 @@ public class APIConsultOrderHeaders {
             String errorMessage = "El StatusCode no es válido";
             APIConsultOrderHeadersResponse errorResponse = new APIConsultOrderHeadersResponse(null, null, null);
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new APIConsultOrderHeadersResponse[]{errorResponse});
-        }
+        }*/
 
         //Armar la segunda parte del path para la URL con las variables recibidas en la función
         String q = "BuyingPartyId=" + BuyingPartyId
                 + ";SubmittedFlag=true;TransactionTypeCode=" + TransactionTypeCode
-                + ";OpenFlag=" + OpenFlag
-                + ";StatusCode=" + StatusCode
+                //+ ";OpenFlag=" + OpenFlag
+                //+ ";StatusCode=" + StatusCode
                 + ";CreationDate<=" + creationDateTo
                 + ";CreationDate>=" + creationDateFrom;
 
