@@ -120,8 +120,24 @@ public class APIConsultOrderLines {
                             Integer OrderedQuantity = (Integer) item.get("OrderedQuantity");
                             String RequestedShipDate = (String) item.get("RequestedShipDate");
                             String ActualShipDate = (String) item.get("ActualShipDate");
-                            Double UnitListPrice = (Double) item.get("UnitListPrice");
-                            Double UnitSellingPrice = (Double) item.get("UnitSellingPrice");
+                            Object unitListPriceObject = item.get("UnitListPrice");
+                            Double UnitListPrice;
+                            if (unitListPriceObject instanceof Integer) {
+                                UnitListPrice = ((Integer) unitListPriceObject).doubleValue();
+                            } else if (unitListPriceObject instanceof Double) {
+                                UnitListPrice = (Double) unitListPriceObject;
+                            }else {
+                                UnitListPrice = 0.0; // Valor predeterminado en caso de un tipo no esperado
+                            }
+                            Object unitSellingPriceObject = item.get("UnitSellingPrice");
+                            Double UnitSellingPrice;
+                            if (unitSellingPriceObject instanceof Integer) {
+                                UnitSellingPrice = ((Integer) unitSellingPriceObject).doubleValue();
+                            } else if (unitSellingPriceObject instanceof Double) {
+                                UnitSellingPrice = (Double) unitSellingPriceObject;
+                            } else {
+                                UnitSellingPrice = 0.0; // Valor predeterminado en caso de un tipo no esperado
+                            }
                             Boolean OnHoldFlag = (Boolean) item.get("OnHoldFlag");
                             String StatusCode = (String) item.get("StatusCode");
                             String Status = (String) item.get("Status");
