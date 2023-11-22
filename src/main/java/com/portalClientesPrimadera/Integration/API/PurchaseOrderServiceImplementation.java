@@ -71,16 +71,20 @@ public class PurchaseOrderServiceImplementation implements PurchaseOrderService 
                 //Crear un Array para el campo que lleva varios datos
                 JSONArray billToCustomerArray = new JSONArray();
                 JSONObject billToCustomer = new JSONObject();
-                billToCustomer.put("CustomerAccountId", customerAccountId);//Se debe reibir
+                billToCustomer.put("CustomerAccountId", customerAccountId);
+                billToCustomer.put("ContactId", "");//Se debe reibir
                //billToCustomer.put("SiteUseId", siteUseId);//Se debe reibir
                 billToCustomerArray.put(billToCustomer);
+                System.out.println(billToCustomerArray);
 
                 //Crear un Array para el campo que lleva varios datos
                 JSONArray shipToCustomerArray = new JSONArray();
                 JSONObject shipToCustomer = new JSONObject();
                 shipToCustomer.put("PartyId", partyId);//Se debe reibir
+                shipToCustomer.put("ContactId", "");
                 shipToCustomer.put("SiteId", siteId);//Se debe reibir
                 shipToCustomerArray.put(shipToCustomer);
+                System.out.println(shipToCustomerArray);
 
                 int variableParaLineasDePedido = 1;
 
@@ -107,6 +111,7 @@ public class PurchaseOrderServiceImplementation implements PurchaseOrderService 
                 requestBody.put("billToCustomer", billToCustomerArray);
                 requestBody.put("shipToCustomer", shipToCustomerArray);
                 requestBody.put("lines", linesArray);
+                System.out.println(requestBody);
 
                 // URL del API
                 String apiUrl = "https://efdg-test.fa.us6.oraclecloud.com:443/fscmRestApi/resources/11.13.18.05/salesOrdersForOrderHub?onlyData=true";
