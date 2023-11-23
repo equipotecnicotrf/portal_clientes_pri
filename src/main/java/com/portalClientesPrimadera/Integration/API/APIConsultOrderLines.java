@@ -36,6 +36,7 @@ public class APIConsultOrderLines {
         for (APIConsultOrderHeadersResponse header : headers){
             //Se toma el OrderKey de cada elemento para tomarlo como variable e iterarlo en el consumo de la API
             String OrderKey = header.getOrderKey();
+            String orderNumber = header.getOrderNumber();
             String sourceTransactionId = header.getSourceTransactionId();
             Long siteId = null;
             String address1 = null;
@@ -108,6 +109,7 @@ public class APIConsultOrderLines {
                         for (int i = 0; i < items.size(); i++) {
                             Map<String, Object> item = items.get(i);
                             Long headerId = header.getHeaderId();
+                            String OrderNumber = orderNumber;
                             String orderKey = OrderKey;
                             String SourceTransactionId = sourceTransactionId;
                             Long FulfillLineId = (Long) item.get("FulfillLineId");
@@ -167,6 +169,7 @@ public class APIConsultOrderLines {
 
                             responses.add(new APIConsultOrderLinesResponse(
                                     headerId,
+                                    OrderNumber,
                                     orderKey,
                                     SourceTransactionId,
                                     FulfillLineId,

@@ -14,6 +14,7 @@ import java.util.List;
 public class APIConsultOrderLinesResponse {
 
     private Long HeaderId;
+    private String OrderNumber;
     private String OrderKey;
     private String SourceTransactionId;
     private Long FulfillLineId;
@@ -55,6 +56,7 @@ public class APIConsultOrderLinesResponse {
 
     public APIConsultOrderLinesResponse (
             Long HeaderId,
+            String OrderNumber,
             String OrderKey,
             String SourceTransactionId,
             Long FulfillLineId,
@@ -80,6 +82,7 @@ public class APIConsultOrderLinesResponse {
             List <LineDetail> lineDetails
             ){
         this.HeaderId = HeaderId;
+        this.OrderNumber = OrderNumber;
         this.OrderKey = OrderKey;
         this.SourceTransactionId = SourceTransactionId;
         this.FulfillLineId = FulfillLineId;
