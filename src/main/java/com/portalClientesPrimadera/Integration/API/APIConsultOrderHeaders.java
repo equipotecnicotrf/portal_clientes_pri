@@ -92,9 +92,10 @@ public class APIConsultOrderHeaders {
                     for (int i = 0; i < items.size(); i++) {
                         Map<String, Object> item = items.get(i);
                         Long headerId = (Long) item.get("HeaderId");
+                        String orderNumber = (String) item.get("OrderNumber");
                         String sourceTransactionId = (String) item.get("SourceTransactionId");
                         String orderKey = (String) item.get("OrderKey");
-                        responseData[i] = new APIConsultOrderHeadersResponse(headerId, sourceTransactionId, orderKey);
+                        responseData[i] = new APIConsultOrderHeadersResponse(headerId, orderNumber, sourceTransactionId, orderKey);
                     }
 
                     return ResponseEntity.ok(responseData);
