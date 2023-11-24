@@ -37,6 +37,7 @@ public class APIConsultOrderLinesResponse {
     private String Address1;
     private String City;
     private String State;
+    private String CreationDate;
     private List<LineDetail> lineDetails;
 
     @Getter
@@ -78,6 +79,7 @@ public class APIConsultOrderLinesResponse {
             String Address1,
             String City,
             String State,
+            String CreationDate,
 
             List <LineDetail> lineDetails
             ){
@@ -104,6 +106,7 @@ public class APIConsultOrderLinesResponse {
         this.Address1 = Address1;
         this.City = City;
         this.State = State;
+        this.CreationDate = CreationDate;
         this.lineDetails = lineDetails;
     }
 
