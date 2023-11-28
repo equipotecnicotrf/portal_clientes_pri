@@ -114,7 +114,7 @@ public class PurchaseOrderServiceImplementation implements PurchaseOrderService 
                 System.out.println(requestBody);
 
                 // URL del API
-                String apiUrl = "https://efdg-test.fa.us6.oraclecloud.com:443/fscmRestApi/resources/11.13.18.05/salesOrdersForOrderHub?onlyData=true";
+                String apiUrl = "https://efdg.fa.us6.oraclecloud.com:443/fscmRestApi/resources/11.13.18.05/salesOrdersForOrderHub?onlyData=true";
 
                 // Usuario y contraseña para la autenticación básica
                 String username = "INTEGRACION_PRI";

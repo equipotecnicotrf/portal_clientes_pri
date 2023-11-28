@@ -30,7 +30,7 @@ public class APIConsultOrderHeaders {
         int limit = 500;
         int offset = 0;
         //Crear la primera parte de la URL para el PATH
-        String apiUrl = "https://efdg-test.fa.us6.oraclecloud.com/fscmRestApi/resources/11.13.18.05/salesOrdersForOrderHub?q=";
+        String apiUrl = "https://efdg.fa.us6.oraclecloud.com/fscmRestApi/resources/11.13.18.05/salesOrdersForOrderHub?q=";
 
         //Validar el tipo de StatusCode para asignar el valor de OpenFlag, caso de que no se un StatusCode valido se retorna error
         /*if ("OPEN".equals(StatusCode) || "PARTIALLY_CLOSE".equals(StatusCode)) {

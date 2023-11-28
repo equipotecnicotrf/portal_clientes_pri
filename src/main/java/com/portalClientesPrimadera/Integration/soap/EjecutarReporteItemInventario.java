@@ -90,7 +90,7 @@ public class EjecutarReporteItemInventario {
             soapMessage.writeTo(System.out);
 
             // Enviar la solicitud SOAP al servicio web
-            String endpointUrl = "https://efdg-test.fa.us6.oraclecloud.com:443/xmlpserver/services/v2/ReportService";
+            String endpointUrl = "https://efdg.fa.us6.oraclecloud.com:443/xmlpserver/services/v2/ReportService";
             SOAPMessage response = connection.call(soapMessage, endpointUrl);
 
             // Procesar la respuesta del servicio web

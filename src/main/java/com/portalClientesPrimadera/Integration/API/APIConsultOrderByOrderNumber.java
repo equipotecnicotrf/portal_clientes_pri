@@ -17,7 +17,7 @@ public class APIConsultOrderByOrderNumber {
 
     public ResponseEntity<APIConsultOrderHeadersResponse[]> getOrderByNumberOrder(String orderNumber, Long buyingPartyId) throws JsonProcessingException {
 
-        String apiUrl = "https://efdg-test.fa.us6.oraclecloud.com/fscmRestApi/resources/11.13.18.05/salesOrdersForOrderHub?";
+        String apiUrl = "https://efdg.fa.us6.oraclecloud.com/fscmRestApi/resources/11.13.18.05/salesOrdersForOrderHub?";
         //int limit = 500;
         //int offset = 0;
         String q = "q=OrderNumber=" + orderNumber + ";BuyingPartyId=" + buyingPartyId + ";SubmittedFlag=true";

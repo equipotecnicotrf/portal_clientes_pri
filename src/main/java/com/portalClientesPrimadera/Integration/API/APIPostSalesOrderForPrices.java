@@ -19,7 +19,7 @@ public class APIPostSalesOrderForPrices {
     public static JSONObject postSalesOrderForPrices(Long customerid, Long inventoryitemid) {
         try {
             // URL del API
-            String apiUrl = "https://efdg-test.fa.us6.oraclecloud.com//fscmRestApi/priceExecution/documentPrices/priceSalesTransaction";
+            String apiUrl = "https://efdg.fa.us6.oraclecloud.com//fscmRestApi/priceExecution/documentPrices/priceSalesTransaction";
 
             // Usuario y contraseña para la autenticación básica
             String username = "INTEGRACION_PRI";

@@ -15,7 +15,7 @@ public class APIPostAvaibilityByItem {
     public static Long getAvailableToTransact(String OrganizationCode, String Subinventory, String ItemNumber ) {
         try {
             // URL del API
-            String apiUrl = "https://efdg-test.fa.us6.oraclecloud.com/fscmRestApi/resources/11.13.18.05/availableQuantityDetails";
+            String apiUrl = "https://efdg.fa.us6.oraclecloud.com/fscmRestApi/resources/11.13.18.05/availableQuantityDetails";
 
             // Usuario y contraseña para la autenticación básica
             String username = "INTEGRACION_PRI";

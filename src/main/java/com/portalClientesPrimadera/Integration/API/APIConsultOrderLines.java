@@ -24,7 +24,7 @@ public class APIConsultOrderLines {
         List<List<APIConsultOrderLinesResponse>> allResponses = new ArrayList<>();
 
         //Se declaran las variables para armar la URL de la API
-        String apiUrl1 = "https://efdg-test.fa.us6.oraclecloud.com:443/fscmRestApi/resources/11.13.18.05/salesOrdersForOrderHub/";
+        String apiUrl1 = "https://efdg.fa.us6.oraclecloud.com:443/fscmRestApi/resources/11.13.18.05/salesOrdersForOrderHub/";
         String apiUrl2 = "/child/lines?";
         String expand = "lineDetails";
         int limit = 500;

@@ -17,7 +17,7 @@ public class APIConsultAddressForOrder {
         ) throws JsonProcessingException {
 
         //Crear la primera parte de la URL para el PATH y concatenar la variable
-        String apiUrl = "https://efdg-test.fa.us6.oraclecloud.com:443/fscmRestApi/resources/11.13.18.05/salesOrdersForOrderHub/OPS:";
+        String apiUrl = "https://efdg.fa.us6.oraclecloud.com:443/fscmRestApi/resources/11.13.18.05/salesOrdersForOrderHub/OPS:";
         String FullApiUrl = apiUrl + sourceTransactionId + "/child/shipToCustomer";
         System.out.println(FullApiUrl);
 
