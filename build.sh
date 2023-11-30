@@ -22,7 +22,14 @@ cp Dockerfile dist
 cp build.env dist
 cp docker/docker.env dist
 cp docker/docker.sh dist
+
+# Copia el archivo keystore.p12 si está presente
+if [ -f ssl/portalpri.p12 ]; then
+  cp ssl/portalpri.p12 dist
+fi
+
 cp target/$JAR_NAME dist
+
 
 echo "Compress dist folder..."
 cd dist

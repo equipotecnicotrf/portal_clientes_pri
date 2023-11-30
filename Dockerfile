@@ -19,6 +19,7 @@ ENV NAME_LOG_FILE=$ARTIFACT_ID
 ARG JAR_NAME
 
 EXPOSE $WS_PORT
+COPY portalpri.p12 /ssl/portalpri.p12
 COPY ${JAR_NAME} /app.jar
 
 ENTRYPOINT [ "sh", "-c", "java -jar -Djava.security.egd=file:/dev/./urandom -Dspring.profiles.active=$PROFILE -Dlogging.config=/config/logback-spring.xml -Xmx256m -Xms128m /app.jar" ]
