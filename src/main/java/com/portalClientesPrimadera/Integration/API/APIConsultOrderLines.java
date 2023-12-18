@@ -148,6 +148,8 @@ public class APIConsultOrderLines {
                             String City = city;
                             String State = state;
                             String CreationDate = (String) item.get("CreationDate");
+                            Integer LineNumber = (Integer) item.get("LineNumber");
+                            String DisplayLineNumber = (String) item.get("DisplayLineNumber");
 
                             APIConsultOrderLinesResponse apiResponse = new APIConsultOrderLinesResponse();
                             List<APIConsultOrderLinesResponse.LineDetail> lineDetails = new ArrayList<>();
@@ -193,6 +195,8 @@ public class APIConsultOrderLines {
                                     City,
                                     State,
                                     CreationDate,
+                                    LineNumber,
+                                    DisplayLineNumber,
                                     lineDetails
                                     ));
                         }

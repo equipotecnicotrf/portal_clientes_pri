@@ -38,6 +38,8 @@ public class APIConsultOrderLinesResponse {
     private String City;
     private String State;
     private String CreationDate;
+    private Integer LineNumber;
+    private String DisplayLineNumber;
     private List<LineDetail> lineDetails;
 
     @Getter
@@ -80,7 +82,8 @@ public class APIConsultOrderLinesResponse {
             String City,
             String State,
             String CreationDate,
-
+            Integer LineNumber,
+            String DisplayLineNumber,
             List <LineDetail> lineDetails
             ){
         this.HeaderId = HeaderId;
@@ -107,6 +110,8 @@ public class APIConsultOrderLinesResponse {
         this.City = City;
         this.State = State;
         this.CreationDate = CreationDate;
+        this.LineNumber = LineNumber;
+        this.DisplayLineNumber = DisplayLineNumber;
         this.lineDetails = lineDetails;
     }
 
